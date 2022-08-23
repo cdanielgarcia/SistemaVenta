@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Torbellino;
+
+namespace SistemaVenta.Model
+{
+    public class Proveedor : INotifyObject
+    {
+        public Proveedor()
+        {
+            cCompra = new ObservableCollection<Compra>();
+        }
+
+        [Key]
+        private int idproveedor { get; set; }
+
+        public int IdProveedor { get { return idproveedor; } set { if (idproveedor != value) { idproveedor = value; OnPropertyChanged(); } } }
+
+        [StringLength(60)]
+        [Display(Name = ("Número documento"))]
+        private string? numerodocumento { get; set; }
+
+        public string? NumeroDocumento { get { return numerodocumento; } set { if (numerodocumento != value) { numerodocumento = value; OnPropertyChanged(); } } }
+
+
+        [StringLength(60)]
+        [Display(Name = ("Razón social"))]
+        private string? razonsocial { get; set; }
+
+        public string? RazonSocial { get { return razonsocial; } set { if (razonsocial != value) { razonsocial = value; OnPropertyChanged(); } } }
+
+        [StringLength(60)]
+        private string? correo { get; set; }
+
+        public string? Correo { get { return correo; } set { if (correo != value) { correo = value; OnPropertyChanged(); } } }
+
+
+        [StringLength(60)]
+        [Display(Name = ("Teléfono"))]
+        private string? telefono { get; set; }
+        public string? Telefono { get { return telefono; } set { if (telefono != value) { telefono = value; OnPropertyChanged(); } } }
+
+        [Display(Name = ("Fecha creación"))]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
+        private DateTime fechacreacion;
+        public DateTime FechaCreacion { get { return fechacreacion; } set { if (fechacreacion != value) { fechacreacion = value; OnPropertyChanged(); } } }
+
+        private ObservableCollection<Compra>? ccompra;
+        public virtual ObservableCollection<Compra>? cCompra { get { return ccompra; } set { ccompra = value; OnPropertyChanged(); } }
+    }
+}
