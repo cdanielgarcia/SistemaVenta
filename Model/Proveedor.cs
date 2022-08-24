@@ -45,6 +45,11 @@ namespace SistemaVenta.Model
         private string? telefono { get; set; }
         public string? Telefono { get { return telefono; } set { if (telefono != value) { telefono = value; OnPropertyChanged(); } } }
 
+        /*private bool estado { get; set; }
+
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+
+
         [Display(Name = ("Fecha creación"))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         private DateTime fechacreacion;

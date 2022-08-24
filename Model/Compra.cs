@@ -42,13 +42,6 @@ namespace SistemaVenta.Model
 
         public string? NumeroDocumento { get { return numerodocumento; } set { if (numerodocumento != value) { numerodocumento = value; OnPropertyChanged(); } } }
 
-
-        [StringLength(60)]
-        [Display(Name = ("Nombre completo"))]
-        private string? nombrecompleto { get; set; }
-
-        public string? NombreCompleto { get { return nombrecompleto; } set { if (nombrecompleto != value) { nombrecompleto = value; OnPropertyChanged(); } } }
-
         [Display(Name = ("Monto total"))]
         [RegularExpression(@"^\d+(\.\d{1,2})?$")]
         [Range(0, 9999999999999999.99)]

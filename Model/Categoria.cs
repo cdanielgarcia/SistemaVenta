@@ -9,7 +9,7 @@ using Torbellino;
 
 namespace SistemaVenta.Model
 {
-    internal class Categoria : INotifyObject
+    public class Categoria : INotifyObject
     {
 
         public Categoria()
@@ -26,6 +26,11 @@ namespace SistemaVenta.Model
         private string? descripcion { get; set; }
 
         public string? Descripcion { get { return descripcion; } set { if (descripcion != value) { descripcion = value; OnPropertyChanged(); } } }
+
+        /*private bool estado { get; set; }
+
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+
 
         [Display(Name = ("Fecha creación"))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]

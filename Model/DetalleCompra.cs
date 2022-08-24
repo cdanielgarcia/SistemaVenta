@@ -47,9 +47,9 @@ namespace SistemaVenta.Model
         [Display(Name = ("Monto total"))]
         [RegularExpression(@"^\d+(\.\d{1,2})?$")]
         [Range(0, 9999999999999999.99)]
-        private decimal montoTotal { get; set; }
+        private decimal montototal { get; set; }
 
-        public decimal MontoTotal { get { return montoTotal; } set { if (montoTotal != value) { montoTotal = value; OnPropertyChanged(); } } }
+        public decimal MontoTotal { get { return montototal; } set { if (montototal != value) { montototal = value; OnPropertyChanged(); } } }
 
         [Display(Name = ("Fecha registro"))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]

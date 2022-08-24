@@ -21,6 +21,10 @@ namespace SistemaVenta.Model
 
         public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
 
+        private int idrol { get; set; }
+
+        public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
+
         [StringLength(60)]
         [Display(Name = ("Número documento"))]
         private string? numerodocumento { get; set; }
@@ -45,9 +49,10 @@ namespace SistemaVenta.Model
         private string? clave { get; set; }
         public string? Clave { get { return clave; } set { if (clave != value) { clave = value; OnPropertyChanged(); } } }
 
-        private int idrol { get; set; }
+        /*private bool estado { get; set; }
 
-        public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+
 
         [Display(Name = ("Fecha registro"))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
