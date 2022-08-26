@@ -20,6 +20,8 @@ namespace SistemaVenta.Model
 
         public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
 
+        public virtual Rol? Rol { get; set; }
+
         [StringLength(60)]
         [Display(Name = ("Nombre menú"))]
         private string? nombremenu { get; set; }

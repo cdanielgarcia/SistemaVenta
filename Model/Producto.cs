@@ -42,6 +42,7 @@ namespace SistemaVenta.Model
 
         public int IdCategoria { get { return idcategoria; } set { if (idcategoria != value) { idcategoria = value; OnPropertyChanged(); } } }
 
+        public virtual Categoria? Categoria { get; set; }
         private int stock { get; set; }
 
         public int Stock { get { return stock; } set { if (stock != value) { stock = value; OnPropertyChanged(); } } }

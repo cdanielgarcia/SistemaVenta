@@ -25,6 +25,8 @@ namespace SistemaVenta.Model
 
         public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
 
+        public virtual Rol? Rol { get; set; }
+
         [StringLength(60)]
         [Display(Name = ("Número documento"))]
         private string? numerodocumento { get; set; }
@@ -61,5 +63,8 @@ namespace SistemaVenta.Model
 
         private ObservableCollection<Compra>? ccompra;
         public virtual ObservableCollection<Compra>? cCompra { get { return ccompra; } set { ccompra = value; OnPropertyChanged(); } }
+
+        private ObservableCollection<Venta>? vventa;
+        public virtual ObservableCollection<Venta>? vVenta { get { return vventa; } set { vventa = value; OnPropertyChanged(); } }
     }
 }

@@ -17,12 +17,14 @@ namespace SistemaVenta.Model
 
         private int idcompra { get; set; }
 
+        public virtual Compra? Compra { get; set; }
         public int IdCompra { get { return idcompra; } set { if (idcompra != value) { idcompra = value; OnPropertyChanged(); } } }
 
         private int idproducto { get; set; }
 
         public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
 
+        public virtual Producto? Producto { get; set; }
 
         [Display(Name = ("Precio compra"))]
         [RegularExpression(@"^\d+(\.\d{1,2})?$")]

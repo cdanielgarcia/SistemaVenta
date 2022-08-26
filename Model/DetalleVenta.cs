@@ -20,10 +20,12 @@ namespace SistemaVenta.Model
 
         public int IdVenta { get { return idventa; } set { if (idventa != value) { idventa = value; OnPropertyChanged(); } } }
 
+        public virtual Venta? Venta { get; set; }
         private int idproducto { get; set; }
 
         public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
 
+        public virtual Producto? Producto { get; set; }
 
         [Display(Name = ("Precio venta"))]
         [RegularExpression(@"^\d+(\.\d{1,2})?$")]

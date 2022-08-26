@@ -25,6 +25,7 @@ namespace SistemaVenta.Model
 
         public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
 
+        public virtual Usuario? Usuario { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Tipo documento"))]
