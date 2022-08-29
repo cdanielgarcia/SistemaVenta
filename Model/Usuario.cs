@@ -16,9 +16,10 @@ namespace SistemaVenta.Model
             cCompra = new ObservableCollection<Compra>();
         }
 
-        [Key]
+        
         private int idusuario { get; set; }
 
+        [Key]
         public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
 
         private int idrol { get; set; }

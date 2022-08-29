@@ -19,9 +19,10 @@ namespace SistemaVenta.Model
 
         
 
-        [Key]
+        
         private int idrol { get; set; }
 
+        [Key]
         public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
 
         [StringLength(60)]

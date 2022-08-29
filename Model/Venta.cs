@@ -16,9 +16,10 @@ namespace SistemaVenta.Model
             cDetalleVenta= new ObservableCollection<DetalleVenta>();
             
         }
-        [Key]
+        
         private int idventa{ get; set; }
 
+        [Key]
         public int IdVenta { get { return idventa; } set { if (idventa != value) { idventa = value; OnPropertyChanged(); } } }
 
         private int idusuario { get; set; }

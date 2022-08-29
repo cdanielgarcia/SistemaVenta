@@ -10,9 +10,10 @@ namespace SistemaVenta.Model
 {
     public class Cliente : INotifyObject
     {
-        [Key]
+        
         private int idcliente { get; set; }
 
+        [Key]
         public int IdCliente { get { return idcliente; } set { if (idcliente != value) { idcliente = value; OnPropertyChanged(); } } }
 
         [StringLength(60)]

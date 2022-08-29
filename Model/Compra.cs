@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -17,9 +17,10 @@ namespace SistemaVenta.Model
 
         }
 
-        [Key]
+        
         private int idcompra{ get; set; }
 
+        [Key]
         public int IdCompra { get { return idcompra; } set { if (idcompra != value) { idcompra = value; OnPropertyChanged(); } } }
 
         private int idusuario { get; set; }

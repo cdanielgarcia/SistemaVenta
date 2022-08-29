@@ -10,9 +10,10 @@ namespace SistemaVenta.Model
 {
     public class DetalleCompra : INotifyObject
     {
-        [Key]
+        
         private int iddetallecompra { get; set; }
 
+        [Key]
         public int IdDetalleCompra { get { return iddetallecompra; } set { if (iddetallecompra != value) { iddetallecompra = value; OnPropertyChanged(); } } }
 
         private int idcompra { get; set; }

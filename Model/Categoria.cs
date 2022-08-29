@@ -16,9 +16,11 @@ namespace SistemaVenta.Model
         {
             cProducto = new ObservableCollection<Producto>();
         }
-        [Key]
+        
+        
         private int idcategoria { get; set; }
 
+        [Key]
         public int IdCategoria { get { return idcategoria; } set { if (idcategoria != value) { idcategoria = value; OnPropertyChanged(); } } }
 
         [StringLength(60)]

@@ -11,9 +11,10 @@ namespace SistemaVenta.Model
     {
       
 
-        [Key]
+        
         private int idpermiso{ get; set; }
 
+        [Key]
         public int IdPermiso{ get { return idpermiso; } set { if (idpermiso != value) { idpermiso = value; OnPropertyChanged(); } } }
 
         private int idrol { get; set; }

@@ -16,10 +16,17 @@ namespace SistemaVenta.Model
             cDetalleCompra = new ObservableCollection<DetalleCompra>();
             cDetalleVenta = new ObservableCollection<DetalleVenta>();
         }
-        [Key]
+        
         private int idproducto { get; set; }
 
+        [Key]
         public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
+
+        private int idcategoria { get; set; }
+
+        public int IdCategoria { get { return idcategoria; } set { if (idcategoria != value) { idcategoria = value; OnPropertyChanged(); } } }
+
+        public virtual Categoria? Categoria { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Código"))]
@@ -38,11 +45,7 @@ namespace SistemaVenta.Model
 
         public string? Descripcion { get { return descripcion; } set { if (descripcion != value) { descripcion = value; OnPropertyChanged(); } } }
 
-        private int idcategoria { get; set; }
-
-        public int IdCategoria { get { return idcategoria; } set { if (idcategoria != value) { idcategoria = value; OnPropertyChanged(); } } }
-
-        public virtual Categoria? Categoria { get; set; }
+        
         private int stock { get; set; }
 
         public int Stock { get { return stock; } set { if (stock != value) { stock = value; OnPropertyChanged(); } } }

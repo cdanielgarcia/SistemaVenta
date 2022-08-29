@@ -8,17 +8,19 @@ namespace SistemaVenta.Data
 
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext()
+        /*public ApplicationDbContext()
            : base("name=ApplicationDbContext")
         {
-        }
-        /*public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {*/
+        }*/
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) { }
+    
 
+
+        
+        public virtual DbSet<Cliente>? Clientes { get; set; }
 
         public virtual DbSet<Categoria>? Categorias { get; set; }
-        public virtual DbSet<Cliente>? Clientes { get; set; }
         public virtual DbSet<Compra>? Compras { get; set; }
         public virtual DbSet<DetalleCompra>? DetalleCompras { get; set; }
         public virtual DbSet<DetalleVenta>? DetalleVentas { get; set; }

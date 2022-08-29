@@ -16,9 +16,10 @@ namespace SistemaVenta.Model
             cCompra = new ObservableCollection<Compra>();
         }
 
-        [Key]
+        
         private int idproveedor { get; set; }
 
+        [Key]
         public int IdProveedor { get { return idproveedor; } set { if (idproveedor != value) { idproveedor = value; OnPropertyChanged(); } } }
 
         [StringLength(60)]
