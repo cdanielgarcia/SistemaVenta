@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,14 @@ namespace SistemaVenta.Model
 
         private int idusuario { get; set; }
 
+        [ForeignKey("IdUsuario")]
         public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
 
         public virtual Usuario? Usuario { get; set; }
+
         private int idproveedor { get; set; }
 
+        [ForeignKey("IdProveedor")]
         public int IdProveedor{ get { return idproveedor; } set { if (idproveedor != value) { idproveedor = value; OnPropertyChanged(); } } }
 
         public virtual Proveedor? Proveedor { get; set; }

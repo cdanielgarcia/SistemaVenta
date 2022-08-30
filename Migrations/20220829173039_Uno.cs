@@ -78,7 +78,6 @@ namespace SistemaVenta.Migrations
                     IdProducto = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdCategoria = table.Column<int>(type: "int", nullable: false),
-                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: true),
                     Codigo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -91,8 +90,8 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_Productos", x => x.IdProducto);
                     table.ForeignKey(
-                        name: "FK_Productos_Categorias_CategoriaIdCategoria",
-                        column: x => x.CategoriaIdCategoria,
+                        name: "FK_Productos_Categorias_IdCategoria",
+                        column: x => x.IdCategoria,
                         principalTable: "Categorias",
                         principalColumn: "IdCategoria");
                 });
@@ -104,7 +103,6 @@ namespace SistemaVenta.Migrations
                     IdPermiso = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdRol = table.Column<int>(type: "int", nullable: false),
-                    RolIdRol = table.Column<int>(type: "int", nullable: true),
                     NombreMenu = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -112,8 +110,8 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_Permisos", x => x.IdPermiso);
                     table.ForeignKey(
-                        name: "FK_Permisos_Roles_RolIdRol",
-                        column: x => x.RolIdRol,
+                        name: "FK_Permisos_Roles_IdRol",
+                        column: x => x.IdRol,
                         principalTable: "Roles",
                         principalColumn: "IdRol");
                 });
@@ -125,7 +123,6 @@ namespace SistemaVenta.Migrations
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdRol = table.Column<int>(type: "int", nullable: false),
-                    RolIdRol = table.Column<int>(type: "int", nullable: true),
                     NumeroDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -136,8 +133,8 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Roles_RolIdRol",
-                        column: x => x.RolIdRol,
+                        name: "FK_Usuarios_Roles_IdRol",
+                        column: x => x.IdRol,
                         principalTable: "Roles",
                         principalColumn: "IdRol");
                 });
@@ -149,9 +146,7 @@ namespace SistemaVenta.Migrations
                     IdCompra = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
-                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: true),
                     IdProveedor = table.Column<int>(type: "int", nullable: false),
-                    ProveedorIdProveedor = table.Column<int>(type: "int", nullable: true),
                     TipoDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumeroDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MontoTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -161,13 +156,13 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_Compras", x => x.IdCompra);
                     table.ForeignKey(
-                        name: "FK_Compras_Proveedores_ProveedorIdProveedor",
-                        column: x => x.ProveedorIdProveedor,
+                        name: "FK_Compras_Proveedores_IdProveedor",
+                        column: x => x.IdProveedor,
                         principalTable: "Proveedores",
                         principalColumn: "IdProveedor");
                     table.ForeignKey(
-                        name: "FK_Compras_Usuarios_UsuarioIdUsuario",
-                        column: x => x.UsuarioIdUsuario,
+                        name: "FK_Compras_Usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "IdUsuario");
                 });
@@ -179,7 +174,6 @@ namespace SistemaVenta.Migrations
                     IdVenta = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
-                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: true),
                     TipoDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumeroDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DocumentoCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -193,8 +187,8 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_Ventas", x => x.IdVenta);
                     table.ForeignKey(
-                        name: "FK_Ventas_Usuarios_UsuarioIdUsuario",
-                        column: x => x.UsuarioIdUsuario,
+                        name: "FK_Ventas_Usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "IdUsuario");
                 });
@@ -205,10 +199,8 @@ namespace SistemaVenta.Migrations
                 {
                     IdDetalleCompra = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompraIdCompra = table.Column<int>(type: "int", nullable: true),
                     IdCompra = table.Column<int>(type: "int", nullable: false),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
-                    ProductoIdProducto = table.Column<int>(type: "int", nullable: true),
                     PrecioCompra = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
@@ -219,13 +211,13 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_DetalleCompras", x => x.IdDetalleCompra);
                     table.ForeignKey(
-                        name: "FK_DetalleCompras_Compras_CompraIdCompra",
-                        column: x => x.CompraIdCompra,
+                        name: "FK_DetalleCompras_Compras_IdCompra",
+                        column: x => x.IdCompra,
                         principalTable: "Compras",
                         principalColumn: "IdCompra");
                     table.ForeignKey(
-                        name: "FK_DetalleCompras_Productos_ProductoIdProducto",
-                        column: x => x.ProductoIdProducto,
+                        name: "FK_DetalleCompras_Productos_IdProducto",
+                        column: x => x.IdProducto,
                         principalTable: "Productos",
                         principalColumn: "IdProducto");
                 });
@@ -237,9 +229,7 @@ namespace SistemaVenta.Migrations
                     IdDetalleVenta = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdVenta = table.Column<int>(type: "int", nullable: false),
-                    VentaIdVenta = table.Column<int>(type: "int", nullable: true),
                     IdProducto = table.Column<int>(type: "int", nullable: false),
-                    ProductoIdProducto = table.Column<int>(type: "int", nullable: true),
                     PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
                     SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -249,66 +239,66 @@ namespace SistemaVenta.Migrations
                 {
                     table.PrimaryKey("PK_DetalleVentas", x => x.IdDetalleVenta);
                     table.ForeignKey(
-                        name: "FK_DetalleVentas_Productos_ProductoIdProducto",
-                        column: x => x.ProductoIdProducto,
+                        name: "FK_DetalleVentas_Productos_IdProducto",
+                        column: x => x.IdProducto,
                         principalTable: "Productos",
                         principalColumn: "IdProducto");
                     table.ForeignKey(
-                        name: "FK_DetalleVentas_Ventas_VentaIdVenta",
-                        column: x => x.VentaIdVenta,
+                        name: "FK_DetalleVentas_Ventas_IdVenta",
+                        column: x => x.IdVenta,
                         principalTable: "Ventas",
                         principalColumn: "IdVenta");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Compras_ProveedorIdProveedor",
+                name: "IX_Compras_IdProveedor",
                 table: "Compras",
-                column: "ProveedorIdProveedor");
+                column: "IdProveedor");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Compras_UsuarioIdUsuario",
+                name: "IX_Compras_IdUsuario",
                 table: "Compras",
-                column: "UsuarioIdUsuario");
+                column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleCompras_CompraIdCompra",
+                name: "IX_DetalleCompras_IdCompra",
                 table: "DetalleCompras",
-                column: "CompraIdCompra");
+                column: "IdCompra");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleCompras_ProductoIdProducto",
+                name: "IX_DetalleCompras_IdProducto",
                 table: "DetalleCompras",
-                column: "ProductoIdProducto");
+                column: "IdProducto");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleVentas_ProductoIdProducto",
+                name: "IX_DetalleVentas_IdProducto",
                 table: "DetalleVentas",
-                column: "ProductoIdProducto");
+                column: "IdProducto");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleVentas_VentaIdVenta",
+                name: "IX_DetalleVentas_IdVenta",
                 table: "DetalleVentas",
-                column: "VentaIdVenta");
+                column: "IdVenta");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Permisos_RolIdRol",
+                name: "IX_Permisos_IdRol",
                 table: "Permisos",
-                column: "RolIdRol");
+                column: "IdRol");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_CategoriaIdCategoria",
+                name: "IX_Productos_IdCategoria",
                 table: "Productos",
-                column: "CategoriaIdCategoria");
+                column: "IdCategoria");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_RolIdRol",
+                name: "IX_Usuarios_IdRol",
                 table: "Usuarios",
-                column: "RolIdRol");
+                column: "IdRol");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ventas_UsuarioIdUsuario",
+                name: "IX_Ventas_IdUsuario",
                 table: "Ventas",
-                column: "UsuarioIdUsuario");
+                column: "IdUsuario");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

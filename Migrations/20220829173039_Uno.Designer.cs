@@ -12,7 +12,7 @@ using SistemaVenta.Data;
 namespace SistemaVenta.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220828214419_Uno")]
+    [Migration("20220829173039_Uno")]
     partial class Uno
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

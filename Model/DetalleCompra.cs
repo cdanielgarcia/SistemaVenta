@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +19,13 @@ namespace SistemaVenta.Model
 
         private int idcompra { get; set; }
 
-        public virtual Compra? Compra { get; set; }
+        [ForeignKey("IdCompra")]
         public int IdCompra { get { return idcompra; } set { if (idcompra != value) { idcompra = value; OnPropertyChanged(); } } }
 
+        public virtual Compra? Compra { get; set; }
         private int idproducto { get; set; }
 
+        [ForeignKey("IdProducto")]
         public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
 
         public virtual Producto? Producto { get; set; }
