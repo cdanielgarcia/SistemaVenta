@@ -1,12 +1,11 @@
-﻿<Window x:Class="SistemaVenta.View.Producto"
+﻿<Window x:Class="SistemaVenta.View.Categoria"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
         mc:Ignorable="d"
-        Title="Producto" Height="450" Width="800">
-
+        Title="Categoria" Height="350" Width="500">
     <Grid Background="Azure">
         <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
             <Grid>
@@ -18,47 +17,26 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
-                        <TextBlock Text="Detalle Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
+                        <TextBlock Text="Categoria" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
                     </StackPanel>
-
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Codigo:</Label>
-                        <TextBox Text="{Binding Codigo.Producto}" Width="186"></TextBox>
+                        <Label Width="87">Descripcion:</Label>
+                        <TextBox Text="{Binding Categoria.Descripcion}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
-
                 <StackPanel Grid.Row="2" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Nombre:</Label>
-                        <TextBox Text="{Binding Nombre.Producto}" Width="186"></TextBox>
+                    <StackPanel Orientation="Horizontal"  >
+                        <Label Width="70">Estado:</Label>
+                        <ComboBox Height="24" Width="150" Margin="8,5">
+                            <ComboBoxItem IsSelected="True" >Activo</ComboBoxItem>
+                            <ComboBoxItem >Inactivo</ComboBoxItem>
+                           
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
-
-                <StackPanel Grid.Row="3" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Descripción:</Label>
-                        <TextBox Text="{Binding Descripcion.Producto}" Width="186"></TextBox>
-                    </StackPanel> 
-                    <Label Width="88" Content="Categoria:"/>
-                    <ComboBox ItemsSource="{Binding  ListaR, Mode=OneWay}" SelectedValue="{Binding Animal.RazaID}"  SelectedValuePath="RazaID" Width="391" SelectionChanged="ComboBox_SelectionChanged">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Nombre}" Width="300" Foreground="Tomato" />
-                                    <TextBlock Text="{Binding CategoriaID}" Width="100" Foreground="Tomato" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </StackPanel>
-
-
-                
-
-
-                <StackPanel Grid.Row="5" Margin="0,84,0,10">
+                <StackPanel Grid.Row="3">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -73,7 +51,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
-                            <Button Command="{Binding cmd_Insertar}" Margin="6">Insertar</Button>
+                            <Button Command="{Binding cmd_Insertar}" Margin="5">Insertar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0">
                             <Button Command="{Binding cmd_Modifica}" Margin="5">Modificar</Button>
@@ -89,7 +67,7 @@
                             <!-- <misCon:BotonA Texto="Salir" /> -->
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5">
-                            <Border Margin="6" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
+                            <Border Margin="5" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
                                 <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Categoria}"  >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
@@ -109,5 +87,6 @@
         </Border>
     </Grid>
 </Window>
+
 
 
