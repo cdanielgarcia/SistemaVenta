@@ -28,7 +28,7 @@ namespace SistemaVenta.Model
 
         public string? NumeroDocumento { get { return numerodocumento; } set { if (numerodocumento != value) { numerodocumento = value; OnPropertyChanged(); } } }
 
-
+        
         [StringLength(60)]
         [Display(Name = ("Razón social"))]
         private string? razonsocial { get; set; }
