@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
         Title="Categoria" Height="350" Width="500">
+
+    <Window.DataContext>
+        <vm:CategoriaVM/>
+    </Window.DataContext>
+
     <Grid Background="Azure">
         <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
             <Grid>
@@ -63,8 +69,7 @@
                             <Button Command="{Binding cmd_Consultar}" Margin="5">Consultar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="4" Grid.Column="0">
-                            <Button Click="Raza_salir" Margin="5">Salir</Button>
-                            <!-- <misCon:BotonA Texto="Salir" /> -->
+                            <Button Click="Categoria_salir" Margin="5">Salir</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5">
                             <Border Margin="5" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
