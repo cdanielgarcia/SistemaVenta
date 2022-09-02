@@ -68,8 +68,8 @@
             </Grid>
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
-                    <GradientStop Color="#FF795736" />
-                    <GradientStop Color="#FFF77C05" Offset="1" />
+                    <GradientStop Color="LemonChiffon" />
+                    <GradientStop Color="DarkGoldenrod" Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
