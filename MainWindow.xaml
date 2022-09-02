@@ -5,8 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+          Title="MainWindow" Height="450" Width="800"
+        AllowsTransparency="True" WindowStyle="None"
+        Background="Transparent" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
     <Grid>
-       
+        <Border CornerRadius="0,100,0,100">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Padding="10" Grid.Row="0" Text="Login"
+                           FontSize="15" FontWeight="Bold"
+                           MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+                           TextAlignment="Center" />
+                <Border Grid.Row="1" CornerRadius="0,60,0,60">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Imagenes/Logo.png" Height="100" Stretch="Fill" Margin="154,5,272,5" Grid.Column="1"/>
+                        <TextBlock Text="Usuario" Grid.Row="1" FontSize="15"
+                                   FontFamily="Segoe Print" Foreground="White"
+                                   Margin="15"/>
+                        <TextBlock Text="Contraseña" Grid.Row="2" FontSize="15"
+                                   FontFamily="Segoe Print" Foreground="White"
+                                   Margin="15"/>
+                        <PasswordBox Grid.Row="1" Grid.Column="1" Margin="15" 
+                                     Name="Usuario"/>
+                        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15" 
+                                     Name="Contra"/>
+                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Aceptar" Padding="5" Margin="15" 
+                                    Click="Btn_ingresar" />
+                            <Button Grid.Column="1" Content="Salir" Margin="15" 
+                                    Click="Btn_Clic_Salir"/>
+                        </Grid>
+                    </Grid>
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,0" >
+                            <GradientStop Color="AntiqueWhite" />
+                            <GradientStop Color="Goldenrod" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Padding="10" Grid.Row="2" Text="Barra de estado"
+                           TextAlignment="Center"/>
+            </Grid>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
+                    <GradientStop Color="#FF795736" />
+                    <GradientStop Color="#FFF77C05" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
     </Grid>
 </Window>
+
