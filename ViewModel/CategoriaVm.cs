@@ -127,11 +127,11 @@ namespace SistemaVenta.ViewModel
                     this.Consultar();
                 }
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error " + er.Message);
-                if (er.InnerException != null)
-                    MessageBox.Show("Error " + er.InnerException.Message);
+                MessageBox.Show("Error CategoriaVM -> No se pudo modificar la categoría | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
             }
         }
     }
