@@ -12,12 +12,17 @@ namespace SistemaVenta.Data
            : base("name=ApplicationDbContext")
         {
         }*/
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options) { }
-    
+        public ApplicationDbContext() 
+            : base(GetOptions("Server=(localdb)\\MSSQLLocalDB;Database=SistemaVentas;Trusted_Connection=True;MultipleActiveResultSets=true"))
+        {
+        }
 
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            var prueba = SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+            return prueba;
+        }
 
-        
         public virtual DbSet<Cliente>? Clientes { get; set; }
 
         public virtual DbSet<Categoria>? Categorias { get; set; }

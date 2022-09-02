@@ -24,9 +24,9 @@ namespace SistemaVenta.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Categoria_salir(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
