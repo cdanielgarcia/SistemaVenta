@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVenta.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace SistemaVenta.View
     /// </summary>
     public partial class Categoria : Window
     {
+        ApplicationDbContext dataEntities = new ApplicationDbContext();
+
         public Categoria()
         {
             InitializeComponent();
@@ -27,6 +30,34 @@ namespace SistemaVenta.View
         private void Categoria_salir(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Insertar_Click(object sender, RoutedEventArgs e)
+        {
+            txtDescripcion.Text = "";
+            comboStatus.SelectedIndex = 0;
+        }
+
+        private void Modificar_Click(object sender, RoutedEventArgs e)
+        {
+            txtDescripcion.Text = "";
+            comboStatus.SelectedIndex = 0;
+        }
+
+        private void Borrar_Click(object sender, RoutedEventArgs e)
+        {
+            txtDescripcion.Text = "";
+            comboStatus.SelectedIndex = 0;
+        }
+
+        private void Consultar_Click(object sender, RoutedEventArgs e)
+        {
+            var query =
+            from category in dataEntities.Categorias
+            orderby category.FechaCreacion descending
+            select new { category.IdCategoria, category.Descripcion, category.Estado, category.FechaCreacion };
+
+            getData.ItemsSource = query.ToList();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Categoria" Height="364" Width="500" ResizeMode="NoResize">
+        Title="Categoria" Height="320" Width="500" ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:CategoriaVM/>
@@ -29,15 +29,17 @@
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="87">Descripcion:</Label>
-                        <TextBox Text="{Binding Categoria.Descripcion}" Width="186"></TextBox>
+                        <TextBox Name="txtDescripcion" Text="{Binding Categoria.Descripcion}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2" >
                     <StackPanel Orientation="Horizontal"  >
                         <Label Width="70">Estado:</Label>
-                        <ComboBox Height="24" Width="150" Margin="8,5">
-                            <ComboBoxItem IsSelected="True" >Activo</ComboBoxItem>
-                            <ComboBoxItem >Inactivo</ComboBoxItem>
+                        <ComboBox SelectedValue="{Binding Categoria.Estado, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedValuePath="Content" Width="202" Name="comboStatus">
+                            <ComboBoxItem IsEnabled="False" IsSelected="True" Content="Seleccionar"></ComboBoxItem>
+                            <ComboBoxItem>True</ComboBoxItem>
+                            <ComboBoxItem>False</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
@@ -56,32 +58,23 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
-                            <Button Command="{Binding cmd_Insertar}" Margin="5">Insertar</Button>
+                            <Button Command="{Binding cmd_Insertar}" Margin="5" Click="Insertar_Click">Insertar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0">
-                            <Button Command="{Binding cmd_Modifica}" Margin="5">Modificar</Button>
+                            <Button Command="{Binding cmd_Modifica}" Margin="5" Click="Modificar_Click">Modificar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="0">
-                            <Button Command="{Binding cmd_Borrar}" Margin="5">Borrar</Button>
+                            <Button Command="{Binding cmd_Borrar}" Margin="5" Click="Borrar_Click">Borrar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0">
-                            <Button Command="{Binding cmd_Consultar}" Margin="5">Consultar</Button>
+                            <Button Margin="5" Click="Consultar_Click">Consultar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="4" Grid.Column="0">
                             <Button Click="Categoria_salir" Margin="5">Salir</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5">
                             <Border Margin="5" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
-                                <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Categoria}"  >
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Descripcion}" Width="200" Foreground="Blue" />
-                                                <TextBlock Text="{Binding Estado}" Width="100" Foreground="Blue" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                                <DataGrid Height="129" VerticalAlignment="Center" Width="355" Name="getData"/>
                             </Border>
                         </StackPanel>
                     </Grid>

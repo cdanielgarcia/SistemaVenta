@@ -25,7 +25,6 @@ namespace SistemaVenta.ViewModel
         public CategoriaVM()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());
-            this.cmd_Consultar = new RelayCommand(p => this.Consultar());
             this.cmd_Borrar = new RelayCommand(p => this.Borrar());
             this.cmd_Modifica = new RelayCommand(p => this.Modificar());
             this.Categoria = new Categoria();
@@ -35,6 +34,8 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
+                this.Categoria.IdCategoria = 0;
+
                 if (this.Categoria.Descripcion == null || this.Categoria.Descripcion == "")
                 {
                     MessageBox.Show("No digito la descripción de la categoría.");
@@ -50,29 +51,10 @@ namespace SistemaVenta.ViewModel
                 }
 
                 MessageBox.Show("Categoría registrada exitosamente.");
-
-                this.Consultar();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error CategoriaVM -> No se pudo registrar la categoría | " + ex.Message);
-                if (ex.InnerException != null)
-                    MessageBox.Show("Error " + ex.InnerException.Message);
-            }
-        }
-
-        public void Consultar()
-        {
-            try
-            {
-                using (var dbc = new ApplicationDbContext())
-                {
-                    this.Lista = new ObservableCollection<Categoria>(dbc.Categorias);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error CategoriaVM -> No se pudo consultar la categoría | " + ex.Message);
                 if (ex.InnerException != null)
                     MessageBox.Show("Error " + ex.InnerException.Message);
             }
@@ -91,9 +73,9 @@ namespace SistemaVenta.ViewModel
 
                     dbc.Categorias.Remove(borrar);
                     dbc.SaveChanges();
-
-                    this.Lista = new ObservableCollection<Categoria>(dbc.Categorias);
                 }
+
+                MessageBox.Show("Categoría borrada exitosamente.");
             }
             catch (Exception ex)
             {
@@ -117,9 +99,11 @@ namespace SistemaVenta.ViewModel
                 {
                     var categoria = dbc.Categorias?.Find(this.Categoria.IdCategoria);
                     categoria.Descripcion = this.Categoria.Descripcion;
+                    categoria.Estado = this.Categoria.Estado;
                     dbc.SaveChanges();
-                    this.Consultar();
                 }
+
+                MessageBox.Show("Categoría modificada exitosamente.");
             }
             catch (Exception ex)
             {
