@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace SistemaVenta.View
 {
     /// <summary>
-    /// Lógica de interacción para Categoria.xaml
+    /// Lógica de interacción para Usuario.xaml
     /// </summary>
-    public partial class Categoria : Window
+    public partial class Usuario : Window
     {
-        public Categoria()
+        public Usuario()
         {
             InitializeComponent();
-        }
-
-        private void Categoria_salir(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

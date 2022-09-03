@@ -1,16 +1,18 @@
-﻿<Window x:Class="SistemaVenta.View.Producto"
+﻿<Window x:Class="SistemaVenta.View.Usuario"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
         mc:Ignorable="d"
-        Title="Producto" Height="450" Width="500">
-
-    <Grid Background="Aquamarine">
-        <Border Margin="10" BorderBrush="GreenYellow" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
-            <Grid>
+        Title="Usuario" Height="806" Width="468">
+    <Grid Background="LightSalmon">
+        <Border Margin="10" BorderBrush="Green" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
+            <Grid RenderTransformOrigin="0.505,0.475">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition Height="31"/>
                     <RowDefinition Height="31"/>
                     <RowDefinition Height="31"/>
                     <RowDefinition Height="31"/>
@@ -20,48 +22,66 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
-                        <TextBlock Text="Detalle Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
+                        <TextBlock Text="Detalle Usuario" FontSize="20" Foreground="OrangeRed" FontWeight="Bold" Height="28" Width="163"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Codigo:</Label>
-                        <TextBox Text="{Binding Codigo.Producto}" Width="186"></TextBox>
+                        <Label Width="129">Documento:</Label>
+                        <TextBox Text="{Binding Documento.Usuario}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Nombre:</Label>
-                        <TextBox Text="{Binding Nombre.Producto}" Width="186"></TextBox>
+                        <Label Width="129">Nombre_Completo:</Label>
+                        <TextBox Text="{Binding Nombre_Completo.Usuario}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="3" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="87">Descripción:</Label>
-                        <TextBox Text="{Binding Descripcion.Producto}" Width="186"></TextBox>
+                        <Label Width="128">Correo:</Label>
+                        <TextBox Text="{Binding Correo.Usuario}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="4" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="88" Content="Categoria:"/>
-                        <ComboBox ItemsSource="{Binding ListaR, Mode=OneWay}" SelectedValue="{Binding Animal.RazaID}"  SelectedValuePath="RazaID" Width="182" SelectionChanged="ComboBox_SelectionChanged">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Nombre}" Width="300" Foreground="Tomato" />
-                                        <TextBlock Text="{Binding CategoriaID}" Width="100" Foreground="Tomato" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
+                        <Label Width="128">Contraseña:</Label>
+                        <TextBox Text="{Binding Contraseña.Usuario}" Width="184"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" >
+                    <StackPanel  Orientation="Horizontal" >
+                        <Label Width="129">Confirmar_Contraseña:</Label>
+                        <TextBox Text="{Binding Confirmar_Contraseña.Usuario}" Width="184"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" >
+                    <StackPanel  Orientation="Horizontal" >
+                        <Label Width="125" Content="Rol:"/>
+                        <ComboBox Height="30" Width="188">
+                            <ComboBoxItem IsSelected="True" Content="Empleado" />
+                            <ComboBoxItem Content="Administrador" />
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="7" >
+                    <StackPanel  Orientation="Horizontal" >
+                        <Label Width="125" Content="Rol:"/>
+                        <ComboBox Height="30" Width="188">
+                            <ComboBoxItem IsSelected="True" Content="Activo" />
+                            <ComboBoxItem Content="No Activo" />
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
 
 
-                <StackPanel Grid.Row="5" Margin="0,84,0,10">
+                <StackPanel Grid.Row="8" Margin="-10,26,10,334">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -73,7 +93,8 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="37*" />
+                            <ColumnDefinition Width="134*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
                             <Button Command="{Binding cmd_Insertar}" Margin="6">Insertar</Button>
@@ -91,7 +112,7 @@
                             <Button Click="Raza_salir" Margin="5">Salir</Button>
                             <!-- <misCon:BotonA Texto="Salir" /> -->
                         </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5">
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
                             <Border Margin="6" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
                                 <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Categoria}"  >
                                     <ListBox.ItemTemplate>
@@ -112,5 +133,3 @@
         </Border>
     </Grid>
 </Window>
-
-

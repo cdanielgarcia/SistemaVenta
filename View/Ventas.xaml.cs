@@ -17,14 +17,14 @@ namespace SistemaVenta.View
     /// <summary>
     /// Lógica de interacción para Categoria.xaml
     /// </summary>
-    public partial class Categoria : Window
+    public partial class Ventas : Window
     {
-        public Categoria()
+        public Ventas()
         {
             InitializeComponent();
         }
 
-        private void Categoria_salir(object sender, RoutedEventArgs e)
+        private void Ventas_salir(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

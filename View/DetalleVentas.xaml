@@ -1,0 +1,46 @@
+﻿<Window x:Class="SistemaVenta.View.DetalleVentas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaVenta.View"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
+        mc:Ignorable="d"
+        Title="Detalle Ventas" Height="440" Width="916">
+
+    <Window.DataContext>
+        <vm:DetalleVentasVM/>
+    </Window.DataContext>
+
+    <Grid Background="Azure" Height="424" VerticalAlignment="Center">
+        <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
+            <Grid>
+                <TextBlock Text="Detalle Ventas" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="18,8,709,364"/>
+
+                <Label Content="Número Documento:" Margin="15,55,746,315"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="146,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                <Button Content="Consultar" HorizontalAlignment="Left" Height="28" Margin="239,56,0,0" VerticalAlignment="Top" Width="96"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="11,107,0,0" VerticalAlignment="Top" Width="328"/>
+                <Label Content="Tipo Documento:" Margin="185,123,567,247"/>
+                <Label Content="Fecha:" Margin="19,124,797,244"/>
+                <DatePicker HorizontalAlignment="Left" Height="28" Margin="22,150,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="190,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsEnabled="False"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="343,99,0,0" VerticalAlignment="Top" Width="522"/>
+                <Label Content="Nombre Completo:" Margin="539,120,161,247"/>
+                <Label Content="Número Documento:" Margin="352,121,367,245"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="357,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" IsEnabled="False"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="545,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"/>
+
+                <DataGrid HorizontalAlignment="Left" Height="151" Margin="9,204,0,0" VerticalAlignment="Top" Width="684" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                <Button Content="Descargar PDF" HorizontalAlignment="Left" Height="30" Margin="721,217,0,0" VerticalAlignment="Top" Width="136"/>
+                <Button Content="Descargar Excel" HorizontalAlignment="Left" Height="30" Margin="720,260,0,0" VerticalAlignment="Top" Width="136"/>
+                <Button Content="Salir" HorizontalAlignment="Left" Height="30" Margin="720,301,0,0" VerticalAlignment="Top" Width="136"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
+
+
