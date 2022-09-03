@@ -8,10 +8,14 @@ namespace SistemaVenta.Data
 
     public class ApplicationDbContext : DbContext
     {
-        /*public ApplicationDbContext()
-           : base("name=ApplicationDbContext")
+        public ApplicationDbContext()
         {
-        }*/
+        }
+
+        /*public ApplicationDbContext()
+  : base("name=ApplicationDbContext")
+{
+}*/
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
     

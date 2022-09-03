@@ -54,9 +54,9 @@ namespace SistemaVenta.Model
         private string? clave { get; set; }
         public string? Clave { get { return clave; } set { if (clave != value) { clave = value; OnPropertyChanged(); } } }
 
-        /*private bool estado { get; set; }
+        private bool estado { get; set; }
 
-        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }
 
 
         [Display(Name = ("Fecha registro"))]

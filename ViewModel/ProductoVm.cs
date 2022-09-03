@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using SistemaVenta.Data;
 using SistemaVenta.Model;
 using Torbellino;
 
@@ -20,40 +22,33 @@ namespace SistemaVenta.ViewModel
         private Producto producto;
 
 
-        public ObservableCollection<Producto> Lista { get { return lista; } set { lista = value; OnPropertyChanged(); } }
-        private ObservableCollection<Producto> lista = new ObservableCollection<Producto>();
+        public ObservableCollection<Producto> ListaProducto { get { return listaproducto; } set { listaproducto = value; OnPropertyChanged(); } }
+        private ObservableCollection<Producto> listaproducto = new ObservableCollection<Producto>();
 
-        public ObservableCollection<Categoria> ListaR { get { return listaR; } set { listaR = value; OnPropertyChanged(); } }
-        private ObservableCollection<Categoria> listaR = new ObservableCollection<Categoria>();
+        public ObservableCollection<Categoria> ListaCategoria { get { return listacategoria; } set { listacategoria = value; OnPropertyChanged(); } }
+        private ObservableCollection<Categoria> listacategoria = new ObservableCollection<Categoria>();
 
 
-        public AnimalVM()
+        public ProductoVm()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());
             this.cmd_Consultar = new RelayCommand(p => this.Consultar());
             this.cmd_Borrar = new RelayCommand(p => this.Borrar());
             this.cmd_Modifica = new RelayCommand(p => this.Modifica());
-            this.Animal = new Animal();
-
-            using (var dbc = new WpfEntityDbContext())
-            {
-                this.Lista = new ObservableCollection<Animal>(dbc.Animales);
-                this.ListaR = new ObservableCollection<Raza>(dbc.Razas);
-                this.ListaC = new ObservableCollection<Color>(dbc.Colores);
-            }
-            this.Animal.FechaNac = DateTime.Now.Date;
+            this.Producto = new Producto();
         }
 
         public void Insertar()
         {
-            using (var dbc = new WpfEntityDbContext())
+            using (var dbc = new ApplicationDbContext())
             {
-                if (this.Animal.Nombre == null)
+                if (this.Producto.Codigo== null || this.Producto.Nombre == null || this.Producto.Descripcion == null)
                 {
-                    MessageBox.Show("No digitó el nombre del animal a insertar");
+                    MessageBox.Show("No digitó algunos datos, intente nuevamente");
                     return;
                 }
-                dbc.Animales.Add(this.Animal);
+                
+                dbc.Productos?.Add(this.Producto);
                 try
                 {
                     dbc.SaveChanges();
@@ -70,33 +65,33 @@ namespace SistemaVenta.ViewModel
 
         public void Consultar()
         {
-            using (var dbc = new WpfEntityDbContext())
+            using (var dbc = new ApplicationDbContext())
             {
-                this.Lista = new ObservableCollection<Animal>(dbc.Animales);
-                this.ListaR = new ObservableCollection<Raza>(dbc.Razas);
-                this.ListaC = new ObservableCollection<Color>(dbc.Colores);
+                this.ListaProducto = new ObservableCollection<Producto>(dbc.Productos);
+                this.ListaCategoria = new ObservableCollection<Categoria>(dbc.Categorias);
+                
             }
         }
 
 
         public void Borrar()
         {
-            if (this.Animal.Nombre == null)
+            if (this.Producto.Nombre == null)
             {
-                MessageBox.Show("No digitó el animal a borrar");
+                MessageBox.Show("No digitó el producto a borrar");
                 return;
             }
 
-            using (var dbc = new WpfEntityDbContext())
+            using (var dbc = new ApplicationDbContext())
             {
                 try
                 {
-                    var borr = (from p in dbc.Animales
-                                where p.Nombre == this.Animal.Nombre
+                    var borr = (from p in dbc.Productos
+                                where p.Nombre == this.Producto.Nombre
                                 select p).Single();
-                    dbc.Animales.Remove(borr);
+                    dbc.Productos?.Remove(borr);
                     dbc.SaveChanges();
-                    this.Lista = new ObservableCollection<Animal>(dbc.Animales);
+                    this.ListaProducto = new ObservableCollection<Producto>(dbc.Productos);
                 }
                 catch (Exception er)
                 {
@@ -109,20 +104,23 @@ namespace SistemaVenta.ViewModel
 
         public void Modifica()
         {
-            if (this.Animal.Nombre == null)
+            if (this.Producto.Nombre == null)
             {
-                MessageBox.Show("No digitó el nombre del animal a modificar");
+                MessageBox.Show("No digitó el nombre del producto a modificar");
                 return;
             }
-            using (var dbc = new WpfEntityDbContext())
+            using (var dbc = new ApplicationDbContext())
             {
-                var animal = dbc.Animales.Find(this.Animal.AnimalID);
-                animal.RazaID = this.Animal.RazaID;
-                animal.Nombre = this.Animal.Nombre;
-                animal.FechaNac = this.Animal.FechaNac;
-                animal.ColorID = this.Animal.ColorID;
-                animal.Peso = this.Animal.Peso;
-                animal.Valor = this.Animal.Valor;
+                var producto = dbc.Productos?.Find(this.Producto.IdProducto);
+                producto.IdCategoria = this.Producto.IdCategoria;            
+                producto.Codigo = this.Producto.Codigo;
+                producto.Nombre = this.Producto.Nombre;
+                producto.Descripcion = this.Producto.Descripcion;
+                producto.Stock = this.Producto.Stock;
+                producto.PrecioCompra = this.Producto.PrecioCompra;
+                producto.PrecioVenta = this.Producto.PrecioVenta;
+                producto.Estado = this.Producto.Estado;
+                producto.FechaRegistro = this.Producto.FechaRegistro;
                 try
                 {
                     dbc.SaveChanges();

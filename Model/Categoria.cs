@@ -29,9 +29,9 @@ namespace SistemaVenta.Model
 
         public string? Descripcion { get { return descripcion; } set { if (descripcion != value) { descripcion = value; OnPropertyChanged(); } } }
 
-        /*private bool estado { get; set; }
+        private bool estado { get; set; }
 
-        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }
 
 
         [Display(Name = ("Fecha creación"))]

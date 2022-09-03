@@ -67,9 +67,9 @@ namespace SistemaVenta.Model
 
         public decimal PrecioVenta { get { return precioventa; } set { if (precioventa != value) { precioventa = value; OnPropertyChanged(); } } }
 
-        /*private bool estado { get; set; }
+        private bool estado { get; set; }
 
-        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }*/
+        public bool Estado { get { return estado; } set { if (estado != value) { estado = value; OnPropertyChanged(); } } }
 
         [Display(Name = ("Fecha registro"))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
