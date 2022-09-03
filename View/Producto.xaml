@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
         Title="Producto" Height="450" Width="500">
 
+    <Window.DataContext>
+        <vm:ProductoVm/>
+    </Window.DataContext>
+    
     <Grid Background="Aquamarine">
         <Border Margin="10" BorderBrush="GreenYellow" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
             <Grid>
@@ -26,21 +31,21 @@
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="87">Codigo:</Label>
-                        <TextBox Text="{Binding Codigo.Producto}" Width="186"></TextBox>
+                        <TextBox Text="{Binding Producto.Codigo}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="87">Nombre:</Label>
-                        <TextBox Text="{Binding Nombre.Producto}" Width="186"></TextBox>
+                        <TextBox Text="{Binding Producto.Nombre}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="3" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="87">Descripción:</Label>
-                        <TextBox Text="{Binding Descripcion.Producto}" Width="186"></TextBox>
+                        <TextBox Text="{Binding Producto.Descripcion}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
 

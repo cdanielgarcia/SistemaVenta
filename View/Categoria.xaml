@@ -38,7 +38,6 @@
                         <ComboBox Height="24" Width="150" Margin="8,5">
                             <ComboBoxItem IsSelected="True" >Activo</ComboBoxItem>
                             <ComboBoxItem >Inactivo</ComboBoxItem>
-                           
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
@@ -77,7 +76,8 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Descripcion}" Width="400" Foreground="Blue" />
+                                                <TextBlock Text="{Binding Descripcion}" Width="200" Foreground="Blue" />
+                                                <TextBlock Text="{Binding Estado}" Width="100" Foreground="Blue" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
