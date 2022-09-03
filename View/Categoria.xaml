@@ -24,12 +24,13 @@
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <TextBlock Text="Categoria" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
+                        <TextBox Name="txtId" Text="{Binding Categoria.IdCategoria, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="51" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="87">Descripcion:</Label>
-                        <TextBox Name="txtDescripcion" Text="{Binding Categoria.Descripcion}" Width="186"></TextBox>
+                        <TextBox Name="txtDescripcion" Text="{Binding Categoria.Descripcion, UpdateSourceTrigger=PropertyChanged}" Width="186"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2" >
@@ -58,13 +59,13 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
-                            <Button Command="{Binding cmd_Insertar}" Margin="5" Click="Insertar_Click">Insertar</Button>
+                            <Button Command="{Binding cmd_Insertar}" Margin="5">Insertar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0">
-                            <Button Command="{Binding cmd_Modifica}" Margin="5" Click="Modificar_Click">Modificar</Button>
+                            <Button Command="{Binding cmd_Modifica}" Margin="5">Modificar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="0">
-                            <Button Command="{Binding cmd_Borrar}" Margin="5" Click="Borrar_Click">Borrar</Button>
+                            <Button Command="{Binding cmd_Borrar}" Margin="5">Borrar</Button>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0">
                             <Button Margin="5" Click="Consultar_Click">Consultar</Button>
@@ -74,7 +75,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5">
                             <Border Margin="5" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
-                                <DataGrid Height="129" VerticalAlignment="Center" Width="355" Name="getData"/>
+                                <DataGrid Height="129" VerticalAlignment="Center" Width="355" Name="getData" MouseDoubleClick="getData_MouseDoubleClick"/>
                             </Border>
                         </StackPanel>
                     </Grid>

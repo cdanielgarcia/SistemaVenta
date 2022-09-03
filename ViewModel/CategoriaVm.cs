@@ -11,7 +11,6 @@ namespace SistemaVenta.ViewModel
     public class CategoriaVM : INotifyObject
     {
         public RelayCommand cmd_Insertar { get; set; }
-        public RelayCommand cmd_Consultar { get; set; }
         public RelayCommand cmd_Borrar { get; set; }
         public RelayCommand cmd_Modifica { get; set; }
 
@@ -46,11 +45,25 @@ namespace SistemaVenta.ViewModel
 
                 using (var dbc = new ApplicationDbContext())
                 {
-                    dbc.Categorias.Add(this.Categoria);
-                    dbc.SaveChanges();
+                    var existCategory = (from c in dbc.Categorias
+                                          where c.Descripcion == this.Categoria.Descripcion
+                                          select c).FirstOrDefault();
+
+                    if (existCategory == null)
+                    {
+                        dbc.Categorias.Add(this.Categoria);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Categoría registrada exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La categoría ya existe.");
+                    }
                 }
 
-                MessageBox.Show("Categoría registrada exitosamente.");
+                this.Categoria.IdCategoria = 0;
+                this.Categoria.Descripcion = "";
+                this.Categoria.Estado = false;
             }
             catch (Exception ex)
             {
@@ -64,18 +77,33 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
-                using (var dbc = new ApplicationDbContext())
+                if (this.Categoria.Descripcion == null || this.Categoria.Descripcion == "")
                 {
-
-                    var borrar = (from c in dbc.Categorias
-                                where c.Descripcion == this.Categoria.Descripcion
-                                select c).Single();
-
-                    dbc.Categorias.Remove(borrar);
-                    dbc.SaveChanges();
+                    MessageBox.Show("No digito la descripción de la categoría.");
+                    return;
                 }
 
-                MessageBox.Show("Categoría borrada exitosamente.");
+                using (var dbc = new ApplicationDbContext())
+                {
+                    var borrar = (from c in dbc.Categorias
+                                where c.Descripcion == this.Categoria.Descripcion
+                                select c).FirstOrDefault();
+
+                    if (borrar != null)
+                    {
+                        dbc.Categorias.Remove(borrar);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Categoría borrada exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La categoría no existe.");
+                    }
+                }
+
+                this.Categoria.IdCategoria = 0;
+                this.Categoria.Descripcion = "";
+                this.Categoria.Estado = false;
             }
             catch (Exception ex)
             {
@@ -98,12 +126,23 @@ namespace SistemaVenta.ViewModel
                 using (var dbc = new ApplicationDbContext())
                 {
                     var categoria = dbc.Categorias?.Find(this.Categoria.IdCategoria);
-                    categoria.Descripcion = this.Categoria.Descripcion;
-                    categoria.Estado = this.Categoria.Estado;
-                    dbc.SaveChanges();
+
+                    if (categoria != null)
+                    {
+                        categoria.Descripcion = this.Categoria.Descripcion;
+                        categoria.Estado = this.Categoria.Estado;
+                        dbc.SaveChanges();
+                        MessageBox.Show("Categoría modificada exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La categoría no existe.");
+                    }
                 }
 
-                MessageBox.Show("Categoría modificada exitosamente.");
+                this.Categoria.IdCategoria = 0;
+                this.Categoria.Descripcion = "";
+                this.Categoria.Estado = false;
             }
             catch (Exception ex)
             {

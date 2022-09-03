@@ -32,24 +32,6 @@ namespace SistemaVenta.View
             this.Close();
         }
 
-        private void Insertar_Click(object sender, RoutedEventArgs e)
-        {
-            txtDescripcion.Text = "";
-            comboStatus.SelectedIndex = 0;
-        }
-
-        private void Modificar_Click(object sender, RoutedEventArgs e)
-        {
-            txtDescripcion.Text = "";
-            comboStatus.SelectedIndex = 0;
-        }
-
-        private void Borrar_Click(object sender, RoutedEventArgs e)
-        {
-            txtDescripcion.Text = "";
-            comboStatus.SelectedIndex = 0;
-        }
-
         private void Consultar_Click(object sender, RoutedEventArgs e)
         {
             var query =
@@ -59,5 +41,51 @@ namespace SistemaVenta.View
 
             getData.ItemsSource = query.ToList();
         }
+
+        private void getData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (getData.SelectedItem == null) return;
+
+            if (getData.SelectedCells.Count > 0)
+            {
+                for (int i = 0; i < getData.SelectedCells.Count; i++)
+                {
+                    var CellValue = GetSelectedValue(getData, i);
+
+                    if (i == 0)
+                        txtId.Text = CellValue;
+
+                    if (i == 1) 
+                        txtDescripcion.Text = CellValue;
+                    
+                    if (i == 2)
+                    {
+                        if (CellValue == "True")
+                        {
+                            comboStatus.SelectedIndex = 1;
+                        }
+                        else
+                        {
+                            comboStatus.SelectedIndex = 2;
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetSelectedValue(DataGrid grid, int i)
+        {
+            DataGridCellInfo cellInfo = grid.SelectedCells[i];
+            if (cellInfo == null) return null;
+
+            DataGridBoundColumn column = cellInfo.Column as DataGridBoundColumn;
+            if (column == null) return null;
+
+            FrameworkElement element = new FrameworkElement() { DataContext = cellInfo.Item };
+            BindingOperations.SetBinding(element, TagProperty, column.Binding);
+
+            return element.Tag.ToString();
+        }
+
     }
 }
