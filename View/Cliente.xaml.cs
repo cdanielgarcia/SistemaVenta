@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVenta.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace SistemaVenta.View
     /// </summary>
     public partial class Cliente : Window
     {
+        ApplicationDbContext dataEntities = new ApplicationDbContext();
+
         public Cliente()
         {
             InitializeComponent();
@@ -28,5 +31,70 @@ namespace SistemaVenta.View
         {
             this.Close();
         }
+
+        private void Consultar_Click(object sender, RoutedEventArgs e)
+        {
+            var query =
+            from client in dataEntities.Clientes
+            orderby client.FechaCreacion descending
+            select new { client.IdCliente, client.NumeroDocumento, client.NombreCompleto, client.Correo, client.Telefono, client.Estado, client.FechaCreacion };
+
+            getData.ItemsSource = query.ToList();
+        }
+
+        private void getData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (getData.SelectedItem == null) return;
+
+            if (getData.SelectedCells.Count > 0)
+            {
+                for (int i = 0; i < getData.SelectedCells.Count; i++)
+                {
+                    var CellValue = GetSelectedValue(getData, i);
+
+                    if (i == 0)
+                        txtId.Text = CellValue;
+
+                    if (i == 1)
+                        txtDocumento.Text = CellValue;
+
+                    if (i == 2)
+                        txtNombre.Text = CellValue;
+
+                    if (i == 3)
+                        txtCorreo.Text = CellValue;
+
+                    if (i == 4)
+                        txtTelefono.Text = CellValue;
+
+                    if (i == 5)
+                    {
+                        if (CellValue == "True")
+                        {
+                            comboStatus.SelectedIndex = 1;
+                        }
+                        else
+                        {
+                            comboStatus.SelectedIndex = 2;
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetSelectedValue(DataGrid grid, int i)
+        {
+            DataGridCellInfo cellInfo = grid.SelectedCells[i];
+            if (cellInfo == null) return null;
+
+            DataGridBoundColumn column = cellInfo.Column as DataGridBoundColumn;
+            if (column == null) return null;
+
+            FrameworkElement element = new FrameworkElement() { DataContext = cellInfo.Item };
+            BindingOperations.SetBinding(element, TagProperty, column.Binding);
+
+            return element.Tag.ToString();
+        }
+
     }
 }

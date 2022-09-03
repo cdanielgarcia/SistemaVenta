@@ -11,21 +11,15 @@ namespace SistemaVenta.ViewModel
     public class ClienteVM : INotifyObject
     {
         public RelayCommand cmd_Insertar { get; set; }
-        public RelayCommand cmd_Consultar { get; set; }
         public RelayCommand cmd_Borrar { get; set; }
         public RelayCommand cmd_Modifica { get; set; }
 
         public Cliente Cliente { get { return cliente; } set { cliente = value; OnPropertyChanged(); } }
         private Cliente cliente;
 
-        public ObservableCollection<Cliente> Lista { get { return lista; } set { lista = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<Cliente> lista = new ObservableCollection<Cliente>();
-
         public ClienteVM()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());
-            this.cmd_Consultar = new RelayCommand(p => this.Consultar());
             this.cmd_Borrar = new RelayCommand(p => this.Borrar());
             this.cmd_Modifica = new RelayCommand(p => this.Modificar());
             this.Cliente = new Cliente();
@@ -35,6 +29,8 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
+                this.Cliente.IdCliente = 0;
+
                 if ((this.Cliente.NumeroDocumento == null || this.Cliente.NumeroDocumento == "") ||
                     (this.Cliente.NombreCompleto == null || this.Cliente.NombreCompleto == "") ||
                     (this.Cliente.Correo == null || this.Cliente.Correo == "") ||
@@ -48,13 +44,28 @@ namespace SistemaVenta.ViewModel
 
                 using (var dbc = new ApplicationDbContext())
                 {
-                    dbc.Clientes.Add(this.Cliente);
-                    dbc.SaveChanges();
+                    var existClient = (from c in dbc.Clientes
+                                         where c.NumeroDocumento == this.Cliente.NumeroDocumento
+                                         select c).FirstOrDefault();
+
+                    if (existClient == null)
+                    {
+                        dbc.Clientes.Add(this.Cliente);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Cliente registrado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente ya existe.");
+                    }
                 }
 
-                MessageBox.Show("Cliente registrado exitosamente.");
-
-                this.Consultar();
+                this.Cliente.IdCliente = 0;
+                this.Cliente.NumeroDocumento = "";
+                this.Cliente.NombreCompleto = "";
+                this.Cliente.Correo = "";
+                this.Cliente.Telefono = "";
+                this.Cliente.Estado = false;
             }
             catch (Exception ex)
             {
@@ -64,39 +75,41 @@ namespace SistemaVenta.ViewModel
             }
         }
 
-        public void Consultar()
-        {
-            try
-            {
-                using (var dbc = new ApplicationDbContext())
-                {
-                    this.Lista = new ObservableCollection<Cliente>(dbc.Clientes);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error ClienteVM -> No se pudo consultar el cliente | " + ex.Message);
-                if (ex.InnerException != null)
-                    MessageBox.Show("Error " + ex.InnerException.Message);
-            }
-        }
-
         public void Borrar()
         {
             try
             {
+                if (this.Cliente.NumeroDocumento == null || this.Cliente.NumeroDocumento == "")
+                {
+                    MessageBox.Show("El número de documento no puede ser vacío.");
+                    return;
+                }
+
                 using (var dbc = new ApplicationDbContext())
                 {
 
                     var borrar = (from c in dbc.Clientes
-                                where c.NumeroDocumento == this.Cliente.NumeroDocumento
-                                select c).Single();
+                                  where c.NumeroDocumento == this.Cliente.NumeroDocumento
+                                  select c).FirstOrDefault();
 
-                    dbc.Clientes.Remove(borrar);
-                    dbc.SaveChanges();
-
-                    this.Lista = new ObservableCollection<Cliente>(dbc.Clientes);
+                    if (borrar != null)
+                    {
+                        dbc.Clientes.Remove(borrar);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Cliente eliminado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente no existe.");
+                    }
                 }
+
+                this.Cliente.IdCliente = 0;
+                this.Cliente.NumeroDocumento = "";
+                this.Cliente.NombreCompleto = "";
+                this.Cliente.Correo = "";
+                this.Cliente.Telefono = "";
+                this.Cliente.Estado = false;
             }
             catch (Exception ex)
             {
@@ -121,27 +134,33 @@ namespace SistemaVenta.ViewModel
 
                 using (var dbc = new ApplicationDbContext())
                 {
-                    var cliente = dbc.Clientes.Find(this.Cliente.IdCliente);
-
-                    var existDocument = (from e in dbc.Clientes
+                    var cliente = (from e in dbc.Clientes
                                          where e.NumeroDocumento == this.Cliente.NumeroDocumento
                                          select e).FirstOrDefault();
 
-                    if (existDocument == null)
+                    if (cliente != null)
                     {
                         cliente.NumeroDocumento = this.Cliente.NumeroDocumento;
                         cliente.NombreCompleto = this.Cliente.NombreCompleto;
                         cliente.Correo = this.Cliente.Correo;
                         cliente.Telefono = this.Cliente.Telefono;
+                        cliente.Estado = this.Cliente.Estado;
                         dbc.SaveChanges();
-                        this.Consultar();
+                        MessageBox.Show("Cliente modificado exitosamente.");
                     }
                     else
                     {
-                        MessageBox.Show("El número de documento ya existe.");
+                        MessageBox.Show("El número de documento no existe.");
                         return;
                     }
                 }
+
+                this.Cliente.IdCliente = 0;
+                this.Cliente.NumeroDocumento = "";
+                this.Cliente.NombreCompleto = "";
+                this.Cliente.Correo = "";
+                this.Cliente.Telefono = "";
+                this.Cliente.Estado = false;
             }
             catch (Exception ex)
             {

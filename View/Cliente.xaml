@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Cliente" Height="367" Width="500">
+        Title="Cliente" Height="400" Width="500">
 
     <Window.DataContext>
         <vm:ClienteVM/>
     </Window.DataContext>
 
-    <Grid Background="Azure" Height="350" VerticalAlignment="Top">
+    <Grid Background="Azure" Height="382" VerticalAlignment="Center">
         <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,35 +24,45 @@
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <TextBlock Text="Cliente" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
+                        <TextBox Name="txtId" Text="{Binding Cliente.IdCliente, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="51" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="130">Numero Documento:</Label>
-                        <TextBox Text="{Binding Cliente.NumeroDocumento}" Width="266"></TextBox>
+                        <TextBox Name="txtDocumento" Text="{Binding Cliente.NumeroDocumento, UpdateSourceTrigger=PropertyChanged}" Width="266"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="130">Nombre Completo:</Label>
-                        <TextBox Text="{Binding Cliente.NombreCompleto}" Width="266"></TextBox>
+                        <TextBox Name="txtNombre" Text="{Binding Cliente.NombreCompleto, UpdateSourceTrigger=PropertyChanged}" Width="266"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="3" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="130">Correo:</Label>
-                        <TextBox Text="{Binding Cliente.Correo}" Width="266"></TextBox>
+                        <TextBox Name="txtCorreo" Text="{Binding Cliente.Correo, UpdateSourceTrigger=PropertyChanged}" Width="266"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Margin="0,30,0,0" >
                     <StackPanel  Orientation="Horizontal" >
                         <Label Width="130">Telefono:</Label>
-                        <TextBox Text="{Binding Cliente.Telefono}" Width="266"></TextBox>
+                        <TextBox Name="txtTelefono" Text="{Binding Cliente.Telefono, UpdateSourceTrigger=PropertyChanged}" Width="266"></TextBox>
                     </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,72,0,160" Grid.Row="3"  >
+                    <Label Width="70">Estado:</Label>
+                    <ComboBox SelectedValue="{Binding Cliente.Estado, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedValuePath="Content" Width="202" Name="comboStatus">
+                        <ComboBoxItem IsEnabled="False" IsSelected="True" Content="Seleccionar"></ComboBoxItem>
+                        <ComboBoxItem>True</ComboBoxItem>
+                        <ComboBoxItem>False</ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0,15,0,0" Grid.RowSpan="3">
-                    <Grid>
+                    <Grid Height="341">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -67,33 +77,24 @@
                             <ColumnDefinition Width="32*"/>
                             <ColumnDefinition Width="169*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,4,0,0">
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,11,0,2">
                             <Button Command="{Binding cmd_Insertar}" Margin="5">Insertar</Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,29,0,0" Grid.RowSpan="2">
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,36,0,0">
                             <Button Command="{Binding cmd_Modifica}" Margin="5">Modificar</Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,16,0,0">
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,62,0,0">
                             <Button Command="{Binding cmd_Borrar}" Margin="5">Borrar</Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,42,0,0">
-                            <Button Command="{Binding cmd_Consultar}" Margin="5">Consultar</Button>
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,89,0,0">
+                            <Button Margin="5" Click="Consultar_Click">Consultar</Button>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,68,0,0">
-                            <Button Click="Cliente_salir" Margin="5">Salir</Button>
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,122,0,0">
+                            <Button Click="Cliente_salir" Content="Salir" Width="90"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,6,0,0">
                             <Border Margin="5" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
-                                <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Cliente}"  >
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding NumeroDocumento}" Width="80" Foreground="Blue" />
-                                                <TextBlock Text="{Binding NombreCompleto}" Width="100" Foreground="Blue" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                                <DataGrid Height="129" VerticalAlignment="Center" Width="355" Name="getData" MouseDoubleClick="getData_MouseDoubleClick"/>
                             </Border>
                         </StackPanel>
                     </Grid>
