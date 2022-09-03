@@ -35,7 +35,7 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
-                if (this.Categoria.Descripcion == null)
+                if (this.Categoria.Descripcion == null || this.Categoria.Descripcion == "")
                 {
                     MessageBox.Show("No digito la descripción de la categoría.");
                     return;
@@ -82,12 +82,6 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
-                if (this.Categoria.Descripcion == null)
-                {
-                    MessageBox.Show("No digito la descripción de la categoría.");
-                    return;
-                }
-
                 using (var dbc = new ApplicationDbContext())
                 {
 
@@ -113,7 +107,7 @@ namespace SistemaVenta.ViewModel
         {
             try
             {
-                if (this.Categoria.Descripcion == null)
+                if (this.Categoria.Descripcion == null || this.Categoria.Descripcion == "")
                 {
                     MessageBox.Show("No digito la descripción de la categoría.");
                     return;
@@ -121,8 +115,8 @@ namespace SistemaVenta.ViewModel
 
                 using (var dbc = new ApplicationDbContext())
                 {
-                    var color = dbc.Categorias.Find(this.Categoria.IdCategoria);
-                    color.Descripcion = this.Categoria.Descripcion;
+                    var categoria = dbc.Categorias.Find(this.Categoria.IdCategoria);
+                    categoria.Descripcion = this.Categoria.Descripcion;
                     dbc.SaveChanges();
                     this.Consultar();
                 }
