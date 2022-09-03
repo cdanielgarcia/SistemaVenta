@@ -18,30 +18,30 @@
                 <TextBlock Text="Ventas" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="12,2,716,370"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="12,33,0,0" VerticalAlignment="Top" Width="328"/>
-                <Label Content="Tipo Documento:" Margin="186,49,597,321"/>
+                <Label Content="Tipo Documento:" Margin="186,49,569,321"/>
                 <ComboBox Height="30" Margin="191,75,578,293">
                     <ComboBoxItem IsSelected="True" Content="Empleado" />
                     <ComboBoxItem Content="Administrador" />
                 </ComboBox>
-                <Label Content="Fecha:" Margin="20,50,826,318"/>
+                <Label Content="Fecha:" Margin="20,50,789,318"/>
                 <DatePicker HorizontalAlignment="Left" Height="28" Margin="23,76,0,0" VerticalAlignment="Top" Width="147"/>
 
-                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="344,25,0,0" VerticalAlignment="Top" Width="529"/>
-                <Label Width="125" Content="Nombre Completo:" Margin="540,46,225,321"/>
-                <Label Width="125" Content="Número Documento:" Margin="353,47,412,319"/>
+                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="344,25,0,0" VerticalAlignment="Top" Width="525"/>
+                <Label Content="Nombre Completo:" Margin="540,46,178,321"/>
+                <Label Content="Número Documento:" Margin="353,47,379,319"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="358,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
                 <TextBox HorizontalAlignment="Left" Height="26" Margin="546,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"/>
 
                 <GroupBox HorizontalAlignment="Center" Height="93" Header="Información del Producto" Margin="0,120,0,0" VerticalAlignment="Top" Width="858"/>
-                <Label Content="Código Producto:" Margin="21,143,765,223"/>
+                <Label Content="Código Producto:" Margin="21,143,726,223"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="25,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
-                <Label Content="Nombre Producto:" Margin="131,143,648,223"/>
+                <Label Content="Nombre Producto:" Margin="131,143,603,223"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="136,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="False"/>
                 <Label Width="125" Content="Precio:" Margin="291,144,474,222"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="295,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
                 <Label Width="125" Content="Stock:" Margin="388,143,377,223"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="787,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" RenderTransformOrigin="-0.224,0.521"/>
-                <Label Content="Cantidad:" Margin="476,143,355,223"/>
+                <Label Content="Cantidad:" Margin="476,143,332,223"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="479,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
                 <Label Width="125" Content="Total a Pagar:" Margin="549,142,216,224"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="554,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" IsEnabled="False"/>
@@ -50,9 +50,9 @@
                 <Label Width="125" Content="Cambio:" Margin="782,141,-17,225"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="393,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False"/>
 
-                <DataGrid HorizontalAlignment="Left" Height="151" Margin="19,223,0,0" VerticalAlignment="Top" Width="684" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                <Button Content="Crear Venta" HorizontalAlignment="Left" Height="42" Margin="734,245,0,0" VerticalAlignment="Top" Width="136"/>
-                <Button Content="Salir" HorizontalAlignment="Left" Height="42" Margin="734,300,0,0" VerticalAlignment="Top" Width="136"/>
+                <DataGrid HorizontalAlignment="Left" Height="151" Margin="13,223,0,0" VerticalAlignment="Top" Width="690" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                <Button Content="Crear Venta" HorizontalAlignment="Left" Height="27" Margin="727,261,0,0" VerticalAlignment="Top" Width="136"/>
+                <Button Content="Salir" HorizontalAlignment="Left" Height="27" Margin="727,301,0,0" VerticalAlignment="Top" Width="136"/>
             </Grid>
         </Border>
     </Grid>

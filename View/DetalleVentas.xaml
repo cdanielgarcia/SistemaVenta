@@ -22,14 +22,14 @@
                 <Button Content="Consultar" HorizontalAlignment="Left" Height="28" Margin="239,56,0,0" VerticalAlignment="Top" Width="96"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="11,107,0,0" VerticalAlignment="Top" Width="328"/>
-                <Label Content="Tipo Documento:" Margin="185,123,598,247"/>
-                <Label Content="Fecha:" Margin="19,124,827,244"/>
+                <Label Content="Tipo Documento:" Margin="185,123,567,247"/>
+                <Label Content="Fecha:" Margin="19,124,797,244"/>
                 <DatePicker HorizontalAlignment="Left" Height="28" Margin="22,150,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="190,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsEnabled="False"/>
 
-                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="343,99,0,0" VerticalAlignment="Top" Width="529"/>
-                <Label Width="125" Content="Nombre Completo:" Margin="539,120,226,247"/>
-                <Label Width="125" Content="Número Documento:" Margin="352,121,413,245"/>
+                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="343,99,0,0" VerticalAlignment="Top" Width="522"/>
+                <Label Content="Nombre Completo:" Margin="539,120,161,247"/>
+                <Label Content="Número Documento:" Margin="352,121,367,245"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="357,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" IsEnabled="False"/>
                 <TextBox HorizontalAlignment="Left" Height="26" Margin="545,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"/>
 
