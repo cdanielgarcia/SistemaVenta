@@ -50,9 +50,9 @@
                                  Name="txtUsuario"/>
                         <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15" Name="txtPassword"/>
                         <TextBox Grid.Row="4" Grid.Column="0" Margin="15" Text="{Binding Usuario.Clave, UpdateSourceTrigger=PropertyChanged}"
-                                 Name="txtSetPassword" IsEnabled="False"/>
+                                 Name="txtSetPassword" IsEnabled="False" Visibility="Hidden"/>
                         <TextBox Grid.Row="3" Grid.Column="0" Margin="15,51,15,-11" Text="{Binding Usuario.Estado, UpdateSourceTrigger=PropertyChanged}"
-                                 Name="txtIsOK" IsEnabled="False" TextChanged="txtIsOK_TextChanged"/>
+                                 Name="txtIsOK" IsEnabled="False" TextChanged="txtIsOK_TextChanged" Visibility="Hidden"/>
                         <Grid Grid.Row="3" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
