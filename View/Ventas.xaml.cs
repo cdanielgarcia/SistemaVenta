@@ -87,11 +87,12 @@ namespace SistemaVenta.View
 
                 var existProduct = (from p in dataEntities.Productos
                                    where p.IdProducto == codigoProducto
-                                   select p.Nombre).FirstOrDefault();
+                                   select new { p.Nombre, p.Stock }).FirstOrDefault();
 
                 if (existProduct != null)
                 {
-                    txtNombreProducto.Text = existProduct;
+                    txtNombreProducto.Text = existProduct.Nombre;
+                    txtStock.Text = existProduct.Stock.ToString();
                 }
                 else
                 {
@@ -104,6 +105,11 @@ namespace SistemaVenta.View
                 if (ex.InnerException != null)
                     MessageBox.Show("Error " + ex.InnerException.Message);
             }
+        }
+
+        private void Obtener_total(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

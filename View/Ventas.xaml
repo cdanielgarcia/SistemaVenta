@@ -46,7 +46,8 @@
                 <Label Content="Cantidad:" Margin="476,143,332,223"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="479,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Name="txtCantidad" Text="{Binding DetalleVenta.Cantidad, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Width="125" Content="Total a Pagar:" Margin="549,142,216,224"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="554,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" IsEnabled="False" Name="txtTotalPagar" Text="{Binding Venta.MontoTotal, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="554,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" IsEnabled="False" Name="txtTotalPagar" Text="{Binding Venta.MontoTotal, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="►" Click="Obtener_total" HorizontalAlignment="Left" Height="26" Margin="624,169,0,0" VerticalAlignment="Top" Width="28"/>
                 <Label Width="125" Content="Paga con:" Margin="668,142,97,224"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="672,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Name="txtPagaCon" Text="{Binding Venta.MontoPago, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Width="125" Content="Cambio:" Margin="782,141,-17,225"/>
