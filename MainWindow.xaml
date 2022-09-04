@@ -4,13 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-          Title="MainWindow" Height="450" Width="800"
+        Title="Iniciar Sesión" Height="450" Width="556"
         AllowsTransparency="True" WindowStyle="None"
         Background="Transparent" WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize">
 
-    <Grid>
+    <Window.DataContext>
+        <vm:IniciarSesionVM/>
+    </Window.DataContext>
+
+
+    <Grid Margin="0,0,0,61">
         <Border CornerRadius="0,100,0,100">
             <Grid>
                 <Grid.RowDefinitions>
@@ -18,7 +24,7 @@
                     <RowDefinition ></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Padding="10" Grid.Row="0" Text="Iniciar Sesión"
+                <TextBlock Padding="10" Grid.Row="0" Text="SISTEMA VENTAS"
                            FontSize="15" FontWeight="Bold"
                            TextAlignment="Center" />
                 <Border Grid.Row="1" CornerRadius="0,60,0,60">
@@ -33,26 +39,27 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Imagenes/Logo.png" Height="100" Stretch="Fill" Margin="154,10,272,0" Grid.Column="1"/>
-                        <TextBlock Text="Usuario" Grid.Row="1" FontSize="15"
+                        <Image Source="pack://application:,,,/Imagenes/logo.png" Height="100" Stretch="Uniform" Margin="114,10,112,0" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Row="1" FontSize="15"
                                    FontFamily="Segoe Print" Foreground="Black"
-                                   Margin="15"/>
+                                   Margin="15"><Run Language="es-es" Text="Correo:"/></TextBlock>
                         <TextBlock Text="Contraseña" Grid.Row="2" FontSize="15"
                                    FontFamily="Segoe Print" Foreground="Black"
                                    Margin="15"/>
-                        <PasswordBox Grid.Row="1" Grid.Column="1" Margin="15" 
-                                     Name="Usuario"/>
-                        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15" 
-                                     Name="Contra"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="15" Text="{Binding Usuario.Correo, UpdateSourceTrigger=PropertyChanged}" 
+                                 Name="txtUsuario"/>
+                        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15" Name="txtPassword"/>
+                        <TextBox Grid.Row="4" Grid.Column="0" Margin="15" Text="{Binding Usuario.Clave, UpdateSourceTrigger=PropertyChanged}"
+                                 Name="txtSetPassword" IsEnabled="False" Visibility="Hidden"/>
                         <Grid Grid.Row="3" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Content="Aceptar" Padding="5" Margin="131,15,342,15" Grid.ColumnSpan="2" 
-                                    />
-                            <Button Grid.Column="1" Content="Salir" Margin="92,15,15,15" 
-                                    />
+                            <Button Content="Iniciar Sesión" Padding="5" Margin="131,15,224,15" Grid.ColumnSpan="2" 
+                                    Click="Ingresar_login" Command="{Binding cmd_Consultar}"/>
+                            <Button Grid.Column="1" Content="Salir" Margin="76,15,15,15" 
+                                    Click="LogIn_salir"/>
                         </Grid>
                     </Grid>
                     <Border.Background>
@@ -62,7 +69,7 @@
                         </LinearGradientBrush>
                     </Border.Background>
                 </Border>
-                <TextBlock Padding="10" Grid.Row="2" Text="Sistema de Ventas"
+                <TextBlock Padding="10" Grid.Row="2" Text="V2022"
                            TextAlignment="Center"/>
             </Grid>
             <Border.Background>

@@ -25,9 +25,14 @@ namespace SistemaVenta
             InitializeComponent();
         }
 
+        private void LogIn_salir(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void Ingresar_login(object sender, RoutedEventArgs e)
         {
-
+            txtSetPassword.Text = txtPassword.Password;
         }
     }
 }
