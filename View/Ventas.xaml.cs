@@ -1,6 +1,7 @@
 ﻿using SistemaVenta.Data;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,12 +88,14 @@ namespace SistemaVenta.View
 
                 var existProduct = (from p in dataEntities.Productos
                                    where p.IdProducto == codigoProducto
-                                   select new { p.Nombre, p.Stock }).FirstOrDefault();
+                                   select new { p.Nombre, p.Stock, p.PrecioVenta }).FirstOrDefault();
 
                 if (existProduct != null)
                 {
                     txtNombreProducto.Text = existProduct.Nombre;
                     txtStock.Text = existProduct.Stock.ToString();
+                    decimal precioVenta = existProduct.PrecioVenta;
+                    txtPrecio.Text = precioVenta.ToString("F", CultureInfo.InvariantCulture);
                 }
                 else
                 {
@@ -109,7 +112,25 @@ namespace SistemaVenta.View
 
         private void Obtener_total(object sender, RoutedEventArgs e)
         {
+            decimal precio = decimal.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+            int cantidad = Convert.ToInt32(txtCantidad.Text);
+            int stock = Convert.ToInt32(txtStock.Text);
 
+            if (precio == 0 || cantidad == 0 || stock == 0)
+            {
+                MessageBox.Show("Revisa que el precio, la cantidad o el stock no este en 0.");
+                return;
+            }
+
+            if (cantidad > stock)
+            {
+                txtTotalPagar.Text = "0";
+                MessageBox.Show("Revisa que la cantidad no sea mayor al stock.");
+                return;
+            }
+
+            decimal total = precio * cantidad;
+            txtTotalPagar.Text = total.ToString("F", CultureInfo.InvariantCulture);
         }
     }
 }

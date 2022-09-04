@@ -19,17 +19,19 @@
 
                 <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="12,33,0,0" VerticalAlignment="Top" Width="328"/>
                 <Label Content="Tipo Documento:" Margin="149,51,606,319"/>
-                <ComboBox Height="30" Margin="154,75,559,293" Name="comboDocumento" SelectedValue="{Binding Venta.TipoDocumento, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem IsSelected="True" Content="FACTURA SIMPLIFICADA" />
-                    <ComboBoxItem Content="FACTURA ELECTRONICA" />
+                <ComboBox Height="30" Margin="154,75,559,293" Name="comboDocumento" SelectedValue="{Binding Venta.TipoDocumento, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                    <ComboBoxItem IsSelected="True">FACTURA SIMPLIFICADA</ComboBoxItem>
+                    <ComboBoxItem>FACTURA ELECTRONICA</ComboBoxItem>
                 </ComboBox>
                 <Label Content="Fecha:" Margin="20,50,789,318"/>
-                <DatePicker HorizontalAlignment="Left" Height="28" Margin="23,76,0,0" VerticalAlignment="Top" Width="113" Name="txtFechaRegistro" Text="{Binding Venta.FechaRegistro, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker HorizontalAlignment="Left" Height="28" Margin="23,76,0,0" VerticalAlignment="Top" Width="113" Name="txtFechaRegistro" 
+                            SelectedDate="{Binding Venta.FechaRegistro, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedDateFormat="Short"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="344,25,0,0" VerticalAlignment="Top" Width="525"/>
                 <Label Content="Nombre Completo:" Margin="540,46,178,321"/>
                 <Label Content="Número Documento:" Margin="353,47,379,319"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="358,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Name="txtNumeroDocumento" Text="{Binding Venta.NumeroDocumento, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="358,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Name="txtNumeroDocumento" Text="{Binding Venta.DocumentoCliente, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox HorizontalAlignment="Left" Height="26" Margin="546,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" IsEnabled="False" Name="txtNombreCompleto" Text="{Binding Venta.NombreCompleto, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Content="Buscar Cliente" Click="Buscar_cliente" HorizontalAlignment="Left" Height="27" Margin="741,74,0,0" VerticalAlignment="Top" Width="108"/>
 
@@ -51,7 +53,7 @@
                 <Label Width="125" Content="Paga con:" Margin="668,142,97,224"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="672,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Name="txtPagaCon" Text="{Binding Venta.MontoPago, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Width="125" Content="Cambio:" Margin="782,141,-17,225"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="394,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False" Name="txtStock"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="394,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False" Name="txtStock" Text="0"/>
 
                 <DataGrid HorizontalAlignment="Left" Height="151" Margin="13,223,0,0" VerticalAlignment="Top" Width="690" Name="getData"/>
                 <Button Content="Crear Venta" Command="{Binding cmd_Insertar}" HorizontalAlignment="Left" Height="27" Margin="727,284,0,0" VerticalAlignment="Top" Width="136"/>
