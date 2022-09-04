@@ -17,10 +17,6 @@ namespace SistemaVenta.ViewModel
         public Categoria Categoria { get { return categoria; } set { categoria = value; OnPropertyChanged(); } }
         private Categoria categoria;
 
-        public ObservableCollection<Categoria> Lista { get { return lista; } set { lista = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<Categoria> lista = new ObservableCollection<Categoria>();
-
         public CategoriaVM()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());

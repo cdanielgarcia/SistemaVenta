@@ -17,26 +17,39 @@
             <Grid>
                 <TextBlock Text="Detalle Ventas" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="18,8,709,364"/>
 
-                <Label Content="Número Documento:" Margin="15,55,746,315"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="146,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
-                <Button Content="Consultar" HorizontalAlignment="Left" Height="28" Margin="239,56,0,0" VerticalAlignment="Top" Width="96"/>
+                <Label Content="Número Documento:" Margin="15,55,727,315"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="146,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124"
+                         Name="txtDocumentoId" Text="{Binding Venta.NumeroDocumento, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Consultar" HorizontalAlignment="Left" Height="28" Margin="284,56,0,0" VerticalAlignment="Top" Width="96"
+                        Click="Consultar_venta" Command="{Binding cmd_Consultar}"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="11,107,0,0" VerticalAlignment="Top" Width="328"/>
                 <Label Content="Tipo Documento:" Margin="185,123,567,247"/>
                 <Label Content="Fecha:" Margin="19,124,797,244"/>
-                <DatePicker HorizontalAlignment="Left" Height="28" Margin="22,150,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="190,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsEnabled="False"/>
+                <DatePicker HorizontalAlignment="Left" Height="28" Margin="22,150,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"
+                            Name="txtFechaRegistro" SelectedDate="{Binding Venta.FechaRegistro, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedDateFormat="Short"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="190,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsEnabled="False"
+                         Name="txtTipoDocumento" Text="{Binding Venta.TipoDocumento, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Cliente&#xD;&#xA;" Margin="343,99,0,0" VerticalAlignment="Top" Width="522"/>
                 <Label Content="Nombre Completo:" Margin="539,120,161,247"/>
                 <Label Content="Número Documento:" Margin="352,121,367,245"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="357,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" IsEnabled="False"/>
-                <TextBox HorizontalAlignment="Left" Height="26" Margin="545,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="357,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" IsEnabled="False"
+                         Name="txtNumeroDocumento" Text="{Binding Venta.DocumentoCliente, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="545,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"
+                         Name="txtNombreCompleto" Text="{Binding Venta.NombreCompleto, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <DataGrid HorizontalAlignment="Left" Height="151" Margin="9,204,0,0" VerticalAlignment="Top" Width="684" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                <Button Content="Descargar PDF" HorizontalAlignment="Left" Height="30" Margin="721,217,0,0" VerticalAlignment="Top" Width="136"/>
-                <Button Content="Descargar Excel" HorizontalAlignment="Left" Height="30" Margin="720,260,0,0" VerticalAlignment="Top" Width="136"/>
-                <Button Content="Salir" HorizontalAlignment="Left" Height="30" Margin="720,301,0,0" VerticalAlignment="Top" Width="136"/>
+                <GroupBox HorizontalAlignment="Left" Height="93" Header="Tabla Ventas:" Margin="10,199,0,0" VerticalAlignment="Top" Width="694"/>
+                <DataGrid HorizontalAlignment="Left" Height="62" Margin="18,223,0,0" VerticalAlignment="Top" Width="675" Name="getDataVenta"/>
+                <GroupBox HorizontalAlignment="Left" Height="92" Header="Tabla DetalleVentas:" Margin="10,296,0,0" VerticalAlignment="Top" Width="694"/>
+                <DataGrid HorizontalAlignment="Left" Height="65" Margin="15,316,0,0" VerticalAlignment="Top" Width="684" Name="getDataDetalleVenta"/>
+                <Button Content="Descargar PDF" HorizontalAlignment="Left" Height="30" Margin="721,217,0,0" VerticalAlignment="Top" Width="136"
+                        Click="Descargar_pdf"/>
+                <Button Content="Descargar Excel" HorizontalAlignment="Left" Height="30" Margin="720,260,0,0" VerticalAlignment="Top" Width="136"
+                        Click="Descargar_excel"/>
+                <Button Content="Salir" HorizontalAlignment="Left" Height="30" Margin="720,301,0,0" VerticalAlignment="Top" Width="136"
+                        Click="DetalleVentas_salir"/>
             </Grid>
         </Border>
     </Grid>
