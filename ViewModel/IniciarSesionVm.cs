@@ -15,7 +15,6 @@ namespace SistemaVenta.ViewModel
         public Usuario Usuario { get { return usuario; } set { usuario = value; OnPropertyChanged(); } }
         private Usuario usuario;
 
-
         public IniciarSesionVM()
         {
             this.cmd_Consultar = new RelayCommand(p => this.Consultar());
@@ -24,41 +23,36 @@ namespace SistemaVenta.ViewModel
 
         public void Consultar()
         {
-            //try
-            //{
-            //    var getDocumentId = this.Venta.NumeroDocumento;
+            try
+            {
+                var getUsuario = this.Usuario.Correo;
+                var getClave = this.Usuario.Clave;
 
-            //    using (var dbc = new ApplicationDbContext())
-            //    {
-            //        var existDocumentId = (from v in dbc.Ventas
-            //                            where v.NumeroDocumento == getDocumentId
-            //                            select new
-            //                            {
-            //                                v.FechaRegistro,
-            //                                v.TipoDocumento,
-            //                                v.DocumentoCliente,
-            //                                v.NombreCompleto
-            //                            }).FirstOrDefault();
+                using (var dbc = new ApplicationDbContext())
+                {
+                    var existUser = (from u in dbc.Usuarios
+                                    where u.Correo == getUsuario &&
+                                    u.Clave == getClave &&
+                                    u.Estado == true
+                                    select u.NombreCompleto).FirstOrDefault();
 
-            //        if (existDocumentId != null)
-            //        {
-            //            this.Venta.FechaRegistro = existDocumentId.FechaRegistro;
-            //            this.Venta.TipoDocumento = existDocumentId.TipoDocumento;
-            //            this.Venta.DocumentoCliente = existDocumentId.DocumentoCliente;
-            //            this.Venta.NombreCompleto = existDocumentId.NombreCompleto;
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("El número documento de la factura no existe en Ventas.");
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error DetalleVentasVM -> No se pudo consultar el Detalle de la Venta | " + ex.Message);
-            //    if (ex.InnerException != null)
-            //        MessageBox.Show("Error " + ex.InnerException.Message);
-            //}
+                    if (existUser != null)
+                    {
+                        this.Usuario.Estado = true;
+                        MessageBox.Show($"¡Bienvenido {existUser}!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El correo o la contraseña no coinciden, verifiquelas.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error IniciarSesionVM -> No se pudo consultar el Usuario | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
+            }
         }
     }
 }

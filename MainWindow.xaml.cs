@@ -34,5 +34,15 @@ namespace SistemaVenta
         {
             txtSetPassword.Text = txtPassword.Password;
         }
+
+        private void txtIsOK_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!txtIsOK.Text.Equals("False"))
+            {
+                SistemaVenta.View.Menu window = new SistemaVenta.View.Menu();
+                window.Show();
+                this.Close();
+            }
+        }
     }
 }
