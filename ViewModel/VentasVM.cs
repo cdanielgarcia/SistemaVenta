@@ -11,144 +11,69 @@ namespace SistemaVenta.ViewModel
     public class VentasVM : INotifyObject
     {
         public RelayCommand cmd_Insertar { get; set; }
-        public RelayCommand cmd_Consultar { get; set; }
-        public RelayCommand cmd_Borrar { get; set; }
-        public RelayCommand cmd_Modifica { get; set; }
 
         public Venta Venta { get { return venta; } set { venta = value; OnPropertyChanged(); } }
         private Venta venta;
-
-        public ObservableCollection<Venta> Lista { get { return lista; } set { lista = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<Venta> lista = new ObservableCollection<Venta>();
+        public DetalleVenta DetalleVenta { get { return detalleVenta; } set { detalleVenta = value; OnPropertyChanged(); } }
+        private DetalleVenta detalleVenta;
 
         public VentasVM()
         {
-            //this.cmd_Insertar = new RelayCommand(p => this.Insertar());
-            //this.cmd_Consultar = new RelayCommand(p => this.Consultar());
-            //this.cmd_Borrar = new RelayCommand(p => this.Borrar());
-            //this.cmd_Modifica = new RelayCommand(p => this.Modificar());
+            this.cmd_Insertar = new RelayCommand(p => this.Insertar());
             this.Venta = new Venta();
+            this.DetalleVenta = new DetalleVenta();
+            this.Venta.FechaRegistro = DateTime.Now;
+            this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
         }
 
-        //public void Insertar()
-        //{
-        //    try
-        //    {
-        //        if ((this.Cliente.NumeroDocumento == null || this.Cliente.NumeroDocumento == "") ||
-        //            (this.Cliente.NombreCompleto == null || this.Cliente.NombreCompleto == "") ||
-        //            (this.Cliente.Correo == null || this.Cliente.Correo == "") ||
-        //            (this.Cliente.Telefono == null || this.Cliente.Telefono == ""))
-        //        {
-        //            MessageBox.Show("Llené todos los campos primero.");
-        //            return;
-        //        }
+        public void Insertar()
+        {
+            try
+            {
+                this.Venta.IdVenta = 0;
+                this.DetalleVenta.IdDetalleVenta = 0;
 
-        //        this.Cliente.FechaCreacion = DateTime.Now;
+                if ((this.Venta.TipoDocumento == null || this.Venta.TipoDocumento == "") ||
+                    (this.Venta.NumeroDocumento == null || this.Venta.NumeroDocumento == "") ||
+                    (this.Venta.DocumentoCliente == null || this.Venta.DocumentoCliente == "") ||
+                    (this.Venta.NombreCompleto == null || this.Venta.NombreCompleto == "") ||
+                    (this.Venta.MontoPago == 0) || (this.Venta.MontoCambio == 0) ||
+                    (this.Venta.MontoTotal == 0) || (this.DetalleVenta.IdProducto == 0) ||
+                    (this.DetalleVenta.PrecioVenta == 0) || (this.DetalleVenta.Cantidad == 0) ||
+                    (this.DetalleVenta.SubTotal == 0))
+                {
+                    MessageBox.Show("Revisé que haya llenado o cambiado los valores de los campos.");
+                    return;
+                }
 
-        //        using (var dbc = new ApplicationDbContext())
-        //        {
-        //            dbc.Clientes.Add(this.Cliente);
-        //            dbc.SaveChanges();
-        //        }
+                using (var dbc = new ApplicationDbContext())
+                {
+                    dbc.Ventas.Add(this.Venta);
+                    dbc.DetalleVentas.Add(this.DetalleVenta);
+                    dbc.SaveChanges();
+                    MessageBox.Show("Venta registrada exitosamente.");
+                }
 
-        //        MessageBox.Show("Cliente registrado exitosamente.");
-
-        //        this.Consultar();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error ClienteVM -> No se pudo registrar el cliente | " + ex.Message);
-        //        if (ex.InnerException != null)
-        //            MessageBox.Show("Error " + ex.InnerException.Message);
-        //    }
-        //}
-
-        //public void Consultar()
-        //{
-        //    try
-        //    {
-        //        using (var dbc = new ApplicationDbContext())
-        //        {
-        //            this.Lista = new ObservableCollection<Cliente>(dbc.Clientes);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error ClienteVM -> No se pudo consultar el cliente | " + ex.Message);
-        //        if (ex.InnerException != null)
-        //            MessageBox.Show("Error " + ex.InnerException.Message);
-        //    }
-        //}
-
-        //public void Borrar()
-        //{
-        //    try
-        //    {
-        //        using (var dbc = new ApplicationDbContext())
-        //        {
-
-        //            var borrar = (from c in dbc.Clientes
-        //                        where c.NumeroDocumento == this.Cliente.NumeroDocumento
-        //                        select c).Single();
-
-        //            dbc.Clientes.Remove(borrar);
-        //            dbc.SaveChanges();
-
-        //            this.Lista = new ObservableCollection<Cliente>(dbc.Clientes);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error ClienteVM -> No se pudo borrar el cliente | " + ex.Message);
-        //        if (ex.InnerException != null)
-        //            MessageBox.Show("Error " + ex.InnerException.Message);
-        //    }
-        //}
-
-        //public void Modificar()
-        //{
-        //    try
-        //    {
-        //        if ((this.Cliente.NumeroDocumento == null || this.Cliente.NumeroDocumento == "")  ||
-        //            (this.Cliente.NombreCompleto == null || this.Cliente.NombreCompleto == "") ||
-        //            (this.Cliente.Correo == null || this.Cliente.Correo == "") ||
-        //            (this.Cliente.Telefono == null || this.Cliente.Telefono == ""))
-        //        {
-        //            MessageBox.Show("No pueden ir campos vacíos.");
-        //            return;
-        //        }
-
-        //        using (var dbc = new ApplicationDbContext())
-        //        {
-        //            var cliente = dbc.Clientes.Find(this.Cliente.IdCliente);
-
-        //            var existDocument = (from e in dbc.Clientes
-        //                                 where e.NumeroDocumento == this.Cliente.NumeroDocumento
-        //                                 select e).FirstOrDefault();
-
-        //            if (existDocument == null)
-        //            {
-        //                cliente.NumeroDocumento = this.Cliente.NumeroDocumento;
-        //                cliente.NombreCompleto = this.Cliente.NombreCompleto;
-        //                cliente.Correo = this.Cliente.Correo;
-        //                cliente.Telefono = this.Cliente.Telefono;
-        //                dbc.SaveChanges();
-        //                this.Consultar();
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("El número de documento ya existe.");
-        //                return;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error ClienteVM -> No se pudo modificar el cliente | " + ex.Message);
-        //        if (ex.InnerException != null)
-        //            MessageBox.Show("Error " + ex.InnerException.Message);
-        //    }
-        //}
+                this.Venta.TipoDocumento = "";
+                this.Venta.NumeroDocumento = "";
+                this.Venta.DocumentoCliente = "";
+                this.Venta.NombreCompleto = "";
+                this.Venta.MontoPago = 0;
+                this.Venta.MontoCambio = 0;
+                this.Venta.MontoTotal = 0;
+                this.Venta.FechaRegistro = DateTime.Now;
+                this.DetalleVenta.IdProducto = 0;
+                this.DetalleVenta.PrecioVenta = 0;
+                this.DetalleVenta.Cantidad = 0;
+                this.DetalleVenta.SubTotal = 0;
+                this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error VentasVM -> No se pudo registrar la venta | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
+            }
+        }
     }
 }
