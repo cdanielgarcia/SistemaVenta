@@ -18,13 +18,16 @@ using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using Microsoft.Win32;
 using System.Globalization;
+using System.Diagnostics;
+using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
 
 namespace SistemaVenta.View
 {
     /// <summary>
     /// Lógica de interacción para Categoria.xaml
     /// </summary>
-    public partial class DetalleVentas : Window
+    public partial class DetalleVentas : System.Windows.Window
     {
         ApplicationDbContext dataEntities = new ApplicationDbContext();
 
@@ -238,12 +241,64 @@ namespace SistemaVenta.View
             doc.Close();
             pw.Close();
 
-            MessageBox.Show("Generado exitosamente.");
+            MessageBox.Show("PDF - Generado exitosamente.");
         }
 
         private void Descargar_excel(object sender, RoutedEventArgs e)
         {
+            if ((txtDocumentoId.Text == null || txtDocumentoId.Text == "") ||
+                (txtFechaRegistro.Text == null || txtFechaRegistro.Text == "") ||
+                (txtNombreCompleto.Text == null || txtNombreCompleto.Text == "") ||
+                (txtNumeroDocumento.Text == null || txtNumeroDocumento.Text == "") ||
+                (txtTipoDocumento.Text == null || txtTipoDocumento.Text == ""))
+            {
+                MessageBox.Show("Consulte primero si existe la Venta.");
+                return;
+            }
 
+            Excel.Application excel = new Excel.Application();
+
+            excel.Visible = true;
+            Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+
+            for (int j = 0; j < getDataVenta.Columns.Count; j++)
+            {
+                Excel.Range myRange = (Excel.Range)sheet1.Cells[1, j + 1];
+                sheet1.Cells[1, j + 1].Font.Bold = true;
+                sheet1.Columns[j + 1].ColumnWidth = 15;
+                myRange.Value2 = getDataVenta.Columns[j].Header;
+            }
+
+            for (int i = 0; i < getDataVenta.Columns.Count; i++)
+            {
+                for (int j = 0; j < getDataVenta.Items.Count; j++)
+                {
+                    TextBlock b = getDataVenta.Columns[i].GetCellContent(getDataVenta.Items[j]) as TextBlock;
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
+                    myRange.Value2 = b.Text;
+                }
+            }
+
+            for (int j = 0; j < getDataDetalleVenta.Columns.Count; j++)
+            {
+                Excel.Range myRange2 = (Excel.Range)sheet1.Cells[5, j + 1];
+                sheet1.Cells[5, j + 1].Font.Bold = true;
+                sheet1.Columns[j + 1].ColumnWidth = 15;
+                myRange2.Value2 = getDataDetalleVenta.Columns[j].Header;
+            }
+
+            for (int i = 0; i < getDataDetalleVenta.Columns.Count; i++)
+            {
+                for (int j = 0; j < getDataDetalleVenta.Items.Count; j++)
+                {
+                    TextBlock b = getDataDetalleVenta.Columns[i].GetCellContent(getDataDetalleVenta.Items[j]) as TextBlock;
+                    Microsoft.Office.Interop.Excel.Range myRange2 = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 6, i + 1];
+                    myRange2.Value2 = b.Text;
+                }
+            }
+
+            MessageBox.Show("Excel - Generado exitosamente.");
         }
     }
 }
