@@ -18,9 +18,8 @@
                     <RowDefinition ></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Padding="10" Grid.Row="0" Text="Login"
+                <TextBlock Padding="10" Grid.Row="0" Text="Iniciar Sesión"
                            FontSize="15" FontWeight="Bold"
-                           MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
                            TextAlignment="Center" />
                 <Border Grid.Row="1" CornerRadius="0,60,0,60">
                     <Grid >
@@ -34,12 +33,12 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Imagenes/Logo.png" Height="100" Stretch="Fill" Margin="154,5,272,5" Grid.Column="1"/>
+                        <Image Source="/Imagenes/Logo.png" Height="100" Stretch="Fill" Margin="154,10,272,0" Grid.Column="1"/>
                         <TextBlock Text="Usuario" Grid.Row="1" FontSize="15"
-                                   FontFamily="Segoe Print" Foreground="White"
+                                   FontFamily="Segoe Print" Foreground="Black"
                                    Margin="15"/>
                         <TextBlock Text="Contraseña" Grid.Row="2" FontSize="15"
-                                   FontFamily="Segoe Print" Foreground="White"
+                                   FontFamily="Segoe Print" Foreground="Black"
                                    Margin="15"/>
                         <PasswordBox Grid.Row="1" Grid.Column="1" Margin="15" 
                                      Name="Usuario"/>
@@ -50,10 +49,10 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Content="Aceptar" Padding="5" Margin="15" 
-                                    Click="Btn_ingresar" />
-                            <Button Grid.Column="1" Content="Salir" Margin="15" 
-                                    Click="Btn_Clic_Salir"/>
+                            <Button Content="Aceptar" Padding="5" Margin="131,15,342,15" Grid.ColumnSpan="2" 
+                                    />
+                            <Button Grid.Column="1" Content="Salir" Margin="92,15,15,15" 
+                                    />
                         </Grid>
                     </Grid>
                     <Border.Background>
@@ -63,7 +62,7 @@
                         </LinearGradientBrush>
                     </Border.Background>
                 </Border>
-                <TextBlock Padding="10" Grid.Row="2" Text="Barra de estado"
+                <TextBlock Padding="10" Grid.Row="2" Text="Sistema de Ventas"
                            TextAlignment="Center"/>
             </Grid>
             <Border.Background>

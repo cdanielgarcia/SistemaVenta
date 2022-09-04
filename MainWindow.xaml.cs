@@ -24,5 +24,10 @@ namespace SistemaVenta
         {
             InitializeComponent();
         }
+
+        private void Ingresar_login(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
