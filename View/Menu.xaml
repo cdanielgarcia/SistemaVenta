@@ -5,62 +5,256 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800"
+        Title="Menu" 
+        Height="600" 
+        Width="1000"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent">
-    
-
-
     <Border CornerRadius="10"
             Background="GhostWhite">
         <Grid Name="Principal"
               Background="Transparent">
-            
-            
-            
-            <!--#region header-->
-            <Grid Name = "Header"
+            <!--#region Header-->
+            <Grid Name="Header"
                   Height="35"
                   VerticalAlignment="Top"
                   Background="Transparent">
-                <Border CornerRadius="10,10,0,0"
-                        Background="Blue"/>
-
+                <Border CornerRadius="10,10,00,0"
+                        Background="Brown"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        
-                        </Grid.ColumnDefinitions>
-                    
-                    <!--#region title-->
-
-                    <TextBlock Text="Menu Principal Sistema Ventas"
-                               Grid.Column="1"
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--#region Title-->
+                    <TextBlock Text="Sistema Ventas"
+                               Grid.Column="0"
                                Foreground="Black"
-                               FontSize="19"
-                               HorizontalAlignment="Center"
+                               FontSize="15"
+                               Margin="10,0,0,0"
+                               HorizontalAlignment="Left"
                                VerticalAlignment="Center"/>
+                    <!--#endregion-->
+                    <!--#region Minimizar-->
+                    <Button x:Name="BtnMinimizar"
+                            Grid.Column="2"
+                            Background="Transparent"
+                            Height="25"
+                            Width="25"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,5,30,0">
+                        <Image Source="pack://application:,,,/Imagenes/Minimizar.png"
+                               Cursor="Hand"/>
+                    </Button>
+                    <!--#endregion-->
+                    <!--#region Cerrar-->
+                    <Button x:Name="BtnCerrar"
+                            Grid.Column="2"
+                            Background="Transparent"
+                            Height="25"
+                            Width="25"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,5,5,0">
+                        <Image Source="pack://application:,,,/Imagenes/Cerrar.png"
+                               Cursor="Hand"/>
+                    </Button>
+                    <!--#endregion-->
+
 
                 </Grid>
-
-            
-                           
             </Grid>
-
+            <!--#endregion-->
+            <!--#region Sidebar-->
             <Grid x:Name="GridMenu"
-                      Background="Transparent"
-                      Width="200"
-                      HorizontalAlignment="Center"
-                      Margin="0,35,0,0">
-                <Border Background="Blue"
-                            CornerRadius="0,0,10,10" Margin="0,0,0,10"/>
+                  Background="Transparent"
+                  Width="250"
+                  HorizontalAlignment="Left"
+                  Margin="0,35,0,0">
+                <Border Background="Brown"
+                        CornerRadius="0,0,0,10"/>
+                <StackPanel Background="Transparent"
+                            VerticalAlignment="Top">
+                    <!--#region lista-->
+                    <ListView Background="Transparent"
+                              BorderBrush="Transparent"
+                              Margin="0,30,0,0"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <!--#region Inicio-->
+                        <ListViewItem Height="70">
+                            <Button x:Name="BtnInicio"
+                                    Height="70"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/logo.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Inicio"
+                                               FontWeight="SemiBold"
+                                               FontSize="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region dos-->
+                        <ListViewItem Height="70">
+                            <Button x:Name="Btndos"
+                                    Height="70"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/logo.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="dos"
+                                               FontWeight="SemiBold"
+                                               FontSize="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region tres-->
+                        <ListViewItem Height="70">
+                            <Button x:Name="Btntres"
+                                    Height="70"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/logo.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="tres"
+                                               FontWeight="SemiBold"
+                                               FontSize="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Cuatro-->
+                        <ListViewItem Height="70">
+                            <Button x:Name="Btncuatro"
+                                    Height="70"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/logo.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="cuatro"
+                                               FontWeight="SemiBold"
+                                               FontSize="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region cinco-->
+                        <ListViewItem Height="70">
+                            <Button x:Name="Btncinco"
+                                    Height="70"
+                                    Width="250"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/logo.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="cinco"
+                                               FontWeight="SemiBold"
+                                               FontSize="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        
+                    </ListView>
+                    <!--#endregion-->
+                    
+                </StackPanel>
 
             </Grid>
-
+            <!--#endregion-->
+            <!--#region Content-->
+            <Grid x:Name="GridContent"
+                  Background="Transparent"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  Height="565"
+                  Width="750">
+                <Border CornerRadius="0,0,0,10"
+                        Background="AntiqueWhite"/>
+                <TextBlock Text="Bienvenidos a la APP "
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           FontSize="50" Margin="0,157,0,0"/>
+                <TextBlock Text=" Sistema de Ventas"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           FontSize="50" Margin="0,282,0,0"/>
+            </Grid>
+            <!--#endregion-->
 
         </Grid>
     </Border>
+
+
 </Window>

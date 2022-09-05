@@ -120,7 +120,7 @@
                                 <Button Command="{Binding cmd_Consultar}" Margin="5">Consultar</Button>
                             </StackPanel>
                             <StackPanel Grid.Row="4" Grid.Column="0">
-                                <Button Click="Raza_salir" Margin="5">Salir</Button>
+                                <Button  Margin="5">Salir</Button>
                                 <!-- <misCon:BotonA Texto="Salir" /> -->
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
