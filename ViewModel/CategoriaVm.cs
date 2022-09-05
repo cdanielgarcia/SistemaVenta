@@ -122,7 +122,7 @@ namespace SistemaVenta.ViewModel
                 using (var dbc = new ApplicationDbContext())
                 {
                     var categoria = (from c in dbc.Categorias
-                                  where c.Descripcion == this.Categoria.Descripcion
+                                  where c.IdCategoria == this.Categoria.IdCategoria
                                   select c).FirstOrDefault();
 
                     if (categoria != null)
