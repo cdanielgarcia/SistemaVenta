@@ -135,7 +135,7 @@ namespace SistemaVenta.ViewModel
                 using (var dbc = new ApplicationDbContext())
                 {
                     var cliente = (from e in dbc.Clientes
-                                         where e.NumeroDocumento == this.Cliente.NumeroDocumento
+                                         where e.IdCliente == this.Cliente.IdCliente
                                          select e).FirstOrDefault();
 
                     if (cliente != null)

@@ -38,12 +38,12 @@ namespace SistemaVenta.View
 
         private void getDataGrid(string Id)
         {
-            //var existVentaId = (from e in dataEntities.Ventas
-            //                   where e.NumeroDocumento == Id
-            //                   select e).FirstOrDefault();
+            var existVentaId = (from e in dataEntities.Ventas
+                                where e.NumeroDocumento == Id
+                                select e).FirstOrDefault();
 
-            //if (existVentaId != null)
-            //{
+            if (existVentaId != null)
+            {
                 var venta =
                 from v in dataEntities.Ventas
                 where v.NumeroDocumento == Id
@@ -77,7 +77,12 @@ namespace SistemaVenta.View
 
                 getDataVenta.ItemsSource = venta.ToList();
                 getDataDetalleVenta.ItemsSource = detalleVenta.ToList();
-            //}
+            }
+            else
+            {
+                MessageBox.Show("No existe el numero de documento de la Venta.");
+                return;
+            }
         }
 
         private void DetalleVentas_salir(object sender, RoutedEventArgs e)

@@ -53,7 +53,7 @@
                 <Label Width="125" Content="Paga con:" Margin="668,142,97,224"/>
                 <TextBox HorizontalAlignment="Left" Height="25" Margin="672,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Name="txtPagaCon" Text="{Binding Venta.MontoPago, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Width="125" Content="Cambio:" Margin="782,141,-17,225"/>
-                <TextBox HorizontalAlignment="Left" Height="25" Margin="394,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False" Name="txtStock" Text="0"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="394,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False" Name="txtStock" Text="{Binding Producto.Stock, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <DataGrid HorizontalAlignment="Left" Height="151" Margin="13,223,0,0" VerticalAlignment="Top" Width="690" Name="getData"/>
                 <Button Content="Crear Venta" Command="{Binding cmd_Insertar}" HorizontalAlignment="Left" Height="27" Margin="727,284,0,0" VerticalAlignment="Top" Width="136"/>
