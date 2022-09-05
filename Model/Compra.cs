@@ -24,19 +24,15 @@ namespace SistemaVenta.Model
         [Key]
         public int IdCompra { get { return idcompra; } set { if (idcompra != value) { idcompra = value; OnPropertyChanged(); } } }
 
-        private int idusuario { get; set; }
+        public int IdUsuario { get; set; }
 
         [ForeignKey("IdUsuario")]
-        public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
+        public virtual Usuario Usuario { get; set; }
 
-        public virtual Usuario? Usuario { get; set; }
-
-        private int idproveedor { get; set; }
+        public int IdProveedor { get; set; }
 
         [ForeignKey("IdProveedor")]
-        public int IdProveedor{ get { return idproveedor; } set { if (idproveedor != value) { idproveedor = value; OnPropertyChanged(); } } }
-
-        public virtual Proveedor? Proveedor { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Tipo documento"))]

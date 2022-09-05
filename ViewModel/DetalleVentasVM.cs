@@ -51,6 +51,10 @@ namespace SistemaVenta.ViewModel
                     }
                     else
                     {
+                        this.Venta.FechaRegistro = DateTime.Now;
+                        this.Venta.TipoDocumento = "";
+                        this.Venta.DocumentoCliente = "";
+                        this.Venta.NombreCompleto = "";
                         MessageBox.Show("El número documento de la factura no existe en Ventas.");
                     }
                 }

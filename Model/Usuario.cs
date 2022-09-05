@@ -23,12 +23,9 @@ namespace SistemaVenta.Model
         [Key]
         public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
 
-        private int idrol { get; set; }
-
+        public int IdRol { get; set; }
         [ForeignKey("IdRol")]
-        public int IdRol { get { return idrol; } set { if (idrol != value) { idrol = value; OnPropertyChanged(); } } }
-
-        public virtual Rol? Rol { get; set; }
+        public virtual Rol Rol { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Número documento"))]

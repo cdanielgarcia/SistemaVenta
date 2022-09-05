@@ -17,13 +17,18 @@ namespace SistemaVenta.ViewModel
         public DetalleVenta DetalleVenta { get { return detalleVenta; } set { detalleVenta = value; OnPropertyChanged(); } }
         private DetalleVenta detalleVenta;
 
+        public Producto Producto { get { return producto; } set { producto = value; OnPropertyChanged(); } }
+        private Producto producto;
+
         public VentasVM()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());
             this.Venta = new Venta();
             this.DetalleVenta = new DetalleVenta();
+            this.Producto = new Producto();
             this.Venta.FechaRegistro = DateTime.Now;
             this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
+            this.Producto.Stock = 0;
         }
 
         public void Insertar()
@@ -43,7 +48,8 @@ namespace SistemaVenta.ViewModel
                     (this.Venta.NombreCompleto == null || this.Venta.NombreCompleto == "") ||
                     (this.Venta.MontoPago == 0) || (this.DetalleVenta.SubTotal == 0) ||
                     (this.Venta.MontoTotal == 0) || (this.DetalleVenta.IdProducto == 0) ||
-                    (this.DetalleVenta.PrecioVenta == 0) || (this.DetalleVenta.Cantidad == 0))
+                    (this.DetalleVenta.PrecioVenta == 0) || (this.DetalleVenta.Cantidad == 0) ||
+                    (this.Producto.Stock == 0))
                 {
                     MessageBox.Show("Revisé que haya llenado o cambiado los valores de los campos.");
                     return;
@@ -70,9 +76,10 @@ namespace SistemaVenta.ViewModel
 
                     var setStockProduct = (from p in dbc.Productos
                                    where p.IdProducto == this.DetalleVenta.IdProducto
-                                   select p.Stock).FirstOrDefault();
+                                   select p).FirstOrDefault();
 
-                    setStockProduct = setStockProduct - this.DetalleVenta.Cantidad;
+                    setStockProduct.Stock -= this.DetalleVenta.Cantidad;
+                    dbc.Productos.Update(setStockProduct);
                     dbc.SaveChanges();
 
                     MessageBox.Show("Venta registrada exitosamente.");
@@ -95,6 +102,7 @@ namespace SistemaVenta.ViewModel
                 this.DetalleVenta.PrecioVenta = 0;
                 this.DetalleVenta.Cantidad = 0;
                 this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
+                this.Producto.Stock = 0;
             }
             catch (Exception ex)
             {

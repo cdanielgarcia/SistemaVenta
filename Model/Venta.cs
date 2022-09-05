@@ -23,13 +23,12 @@ namespace SistemaVenta.Model
         [Key]
         public int IdVenta { get { return idventa; } set { if (idventa != value) { idventa = value; OnPropertyChanged(); } } }
 
-       
-        private int idusuario { get; set; }
+
+        public int IdUsuario { get; set; }
 
         [ForeignKey("IdUsuario")]
-        public int IdUsuario { get { return idusuario; } set { if (idusuario != value) { idusuario = value; OnPropertyChanged(); } } }
+        public virtual Usuario Usuario { get; set; }
 
-        public virtual Usuario? Usuario { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Tipo documento"))]

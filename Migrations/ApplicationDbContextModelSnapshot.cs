@@ -98,20 +98,14 @@ namespace SistemaVenta.Migrations
                     b.Property<string>("NumeroDocumento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProveedorIdProveedor")
-                        .HasColumnType("int");
-
                     b.Property<string>("TipoDocumento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UsuarioIdUsuario")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCompra");
 
-                    b.HasIndex("ProveedorIdProveedor");
+                    b.HasIndex("IdProveedor");
 
-                    b.HasIndex("UsuarioIdUsuario");
+                    b.HasIndex("IdUsuario");
 
                     b.ToTable("Compras");
                 });
@@ -125,9 +119,6 @@ namespace SistemaVenta.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDetalleCompra"), 1L, 1);
 
                     b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompraIdCompra")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaRegistro")
@@ -148,14 +139,11 @@ namespace SistemaVenta.Migrations
                     b.Property<decimal>("PrecioVenta")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ProductoIdProducto")
-                        .HasColumnType("int");
-
                     b.HasKey("IdDetalleCompra");
 
-                    b.HasIndex("CompraIdCompra");
+                    b.HasIndex("IdCompra");
 
-                    b.HasIndex("ProductoIdProducto");
+                    b.HasIndex("IdProducto");
 
                     b.ToTable("DetalleCompras");
                 });
@@ -183,20 +171,14 @@ namespace SistemaVenta.Migrations
                     b.Property<decimal>("PrecioVenta")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ProductoIdProducto")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("SubTotal")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("VentaIdVenta")
-                        .HasColumnType("int");
-
                     b.HasKey("IdDetalleVenta");
 
-                    b.HasIndex("ProductoIdProducto");
+                    b.HasIndex("IdProducto");
 
-                    b.HasIndex("VentaIdVenta");
+                    b.HasIndex("IdVenta");
 
                     b.ToTable("DetalleVentas");
                 });
@@ -218,12 +200,9 @@ namespace SistemaVenta.Migrations
                     b.Property<string>("NombreMenu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RolIdRol")
-                        .HasColumnType("int");
-
                     b.HasKey("IdPermiso");
 
-                    b.HasIndex("RolIdRol");
+                    b.HasIndex("IdRol");
 
                     b.ToTable("Permisos");
                 });
@@ -235,9 +214,6 @@ namespace SistemaVenta.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProducto"), 1L, 1);
-
-                    b.Property<int?>("CategoriaIdCategoria")
-                        .HasColumnType("int");
 
                     b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(max)");
@@ -268,7 +244,7 @@ namespace SistemaVenta.Migrations
 
                     b.HasKey("IdProducto");
 
-                    b.HasIndex("CategoriaIdCategoria");
+                    b.HasIndex("IdCategoria");
 
                     b.ToTable("Productos");
                 });
@@ -352,12 +328,9 @@ namespace SistemaVenta.Migrations
                     b.Property<string>("NumeroDocumento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RolIdRol")
-                        .HasColumnType("int");
-
                     b.HasKey("IdUsuario");
 
-                    b.HasIndex("RolIdRol");
+                    b.HasIndex("IdRol");
 
                     b.ToTable("Usuarios");
                 });
@@ -397,12 +370,9 @@ namespace SistemaVenta.Migrations
                     b.Property<string>("TipoDocumento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UsuarioIdUsuario")
-                        .HasColumnType("int");
-
                     b.HasKey("IdVenta");
 
-                    b.HasIndex("UsuarioIdUsuario");
+                    b.HasIndex("IdUsuario");
 
                     b.ToTable("Ventas");
                 });
@@ -411,11 +381,15 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Proveedor", "Proveedor")
                         .WithMany("cCompra")
-                        .HasForeignKey("ProveedorIdProveedor");
+                        .HasForeignKey("IdProveedor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SistemaVenta.Model.Usuario", "Usuario")
                         .WithMany("cCompra")
-                        .HasForeignKey("UsuarioIdUsuario");
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Proveedor");
 
@@ -426,11 +400,15 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Compra", "Compra")
                         .WithMany("cDetalleCompra")
-                        .HasForeignKey("CompraIdCompra");
+                        .HasForeignKey("IdCompra")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SistemaVenta.Model.Producto", "Producto")
                         .WithMany("cDetalleCompra")
-                        .HasForeignKey("ProductoIdProducto");
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Compra");
 
@@ -441,11 +419,15 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Producto", "Producto")
                         .WithMany("cDetalleVenta")
-                        .HasForeignKey("ProductoIdProducto");
+                        .HasForeignKey("IdProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SistemaVenta.Model.Venta", "Venta")
                         .WithMany("cDetalleVenta")
-                        .HasForeignKey("VentaIdVenta");
+                        .HasForeignKey("IdVenta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Producto");
 
@@ -456,7 +438,9 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Rol", "Rol")
                         .WithMany("cPermiso")
-                        .HasForeignKey("RolIdRol");
+                        .HasForeignKey("IdRol")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Rol");
                 });
@@ -465,7 +449,9 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Categoria", "Categoria")
                         .WithMany("cProducto")
-                        .HasForeignKey("CategoriaIdCategoria");
+                        .HasForeignKey("IdCategoria")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Categoria");
                 });
@@ -474,7 +460,9 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Rol", "Rol")
                         .WithMany("cUsuario")
-                        .HasForeignKey("RolIdRol");
+                        .HasForeignKey("IdRol")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Rol");
                 });
@@ -483,7 +471,9 @@ namespace SistemaVenta.Migrations
                 {
                     b.HasOne("SistemaVenta.Model.Usuario", "Usuario")
                         .WithMany("vVenta")
-                        .HasForeignKey("UsuarioIdUsuario");
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });
