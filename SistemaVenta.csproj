@@ -47,6 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="View\Rol.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="View\Proveedor.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
