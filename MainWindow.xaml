@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SistemaVenta"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Iniciar Sesión" Height="450" Width="556"
+        Title="Iniciar Sesión" Height="425" Width="441"
         AllowsTransparency="True" WindowStyle="None"
         Background="Transparent" WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize">
@@ -24,10 +24,10 @@
                     <RowDefinition ></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Padding="10" Grid.Row="0" Text="SISTEMA VENTAS"
-                           FontSize="15" FontWeight="Bold"
-                           TextAlignment="Center" />
-                <Border Grid.Row="1" CornerRadius="0,60,0,60">
+                <TextBlock Padding="10" Grid.Row="0" Text="Iniciar Sesión"
+                           FontSize="15" FontWeight="Bold" FontFamily="Bahnschrift"
+                           TextAlignment="Center" Background="#1f1f23" Foreground="#efeff1" />
+                <Border Grid.Row="1" CornerRadius="0,60,0,60" Background="#efeff1">
                     <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -39,16 +39,16 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Source="pack://application:,,,/Imagenes/logo.png" Height="100" Stretch="Uniform" Margin="114,10,112,0" Grid.ColumnSpan="2"/>
+                        <Image Source="pack://application:,,,/Imagenes/logo.png" Height="100" Stretch="Uniform" Margin="0,10,1,0" Grid.ColumnSpan="2"/>
                         <TextBlock Grid.Row="1" FontSize="15"
-                                   FontFamily="Segoe Print" Foreground="Black"
+                                   FontFamily="Bahnschrift" Foreground="Black"
                                    Margin="15"><Run Language="es-es" Text="Correo:"/></TextBlock>
-                        <TextBlock Text="Contraseña" Grid.Row="2" FontSize="15"
-                                   FontFamily="Segoe Print" Foreground="Black"
+                        <TextBlock Text="Contraseña:" Grid.Row="2" FontSize="15"
+                                   FontFamily="Bahnschrift" Foreground="Black"
                                    Margin="15"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="15" Text="{Binding Usuario.Correo, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="15,15,61,1" Text="{Binding Usuario.Correo, UpdateSourceTrigger=PropertyChanged}" 
                                  Name="txtUsuario"/>
-                        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15" Name="txtPassword"/>
+                        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="15,15,62,0" Name="txtPassword"/>
                         <TextBox Grid.Row="4" Grid.Column="0" Margin="15" Text="{Binding Usuario.Clave, UpdateSourceTrigger=PropertyChanged}"
                                  Name="txtSetPassword" IsEnabled="False" Visibility="Hidden"/>
                         <TextBox Grid.Row="3" Grid.Column="0" Margin="15,51,15,-11" Text="{Binding Usuario.Estado, UpdateSourceTrigger=PropertyChanged}"
@@ -58,21 +58,15 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Content="Iniciar Sesión" Padding="5" Margin="131,15,224,15" Grid.ColumnSpan="2" 
-                                    Click="Ingresar_login" Command="{Binding cmd_Consultar}"/>
-                            <Button Grid.Column="1" Content="Salir" Margin="76,15,15,15" 
+                            <Button Content="Iniciar Sesión" Padding="5" Margin="124,15,196,15" 
+                                    Click="Ingresar_login" Command="{Binding cmd_Consultar}" Grid.ColumnSpan="2"/>
+                            <Button Grid.Column="1" Content="Salir" Margin="48,15,63,15" 
                                     Click="LogIn_salir"/>
                         </Grid>
                     </Grid>
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="0.5,0" >
-                            <GradientStop Color="AntiqueWhite" />
-                            <GradientStop Color="Goldenrod" Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
                 </Border>
-                <TextBlock Padding="10" Grid.Row="2" Text="V2022"
-                           TextAlignment="Center"/>
+                <TextBlock Padding="10" Grid.Row="2" Text="SISTEMA VENTAS - V2022" FontFamily="Bahnschrift"
+                           TextAlignment="Center" Background="#1f1f23" Foreground="#efeff1"/>
             </Grid>
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
