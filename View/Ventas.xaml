@@ -15,7 +15,8 @@
     <Grid Background="Azure" Height="424" VerticalAlignment="Center">
         <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
             <Grid>
-                <TextBlock Text="Ventas" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="12,2,716,370"/>
+                <Button Height="22" Margin="18,3,804,373" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"/>
+                <TextBlock Text="Ventas" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="110,0,617,372"/>
 
                 <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Venta" Margin="12,33,0,0" VerticalAlignment="Top" Width="328"/>
                 <Label Content="Tipo Documento:" Margin="149,51,606,319"/>

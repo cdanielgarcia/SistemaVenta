@@ -23,14 +23,15 @@
             <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="31"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition Height="31"/>
                         <RowDefinition Height="31"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" >
-                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
-                            <TextBlock Text="Categoria" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163"/>
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
+                            <Button Height="22" Width="51" Margin="5,0,0,0" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"></Button>
+                            <TextBlock Text="Categoria" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
                             <TextBox Name="txtId" Text="{Binding Categoria.IdCategoria, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="51" Visibility="Hidden"/>
                         </StackPanel>
                     </StackPanel>
@@ -44,7 +45,7 @@
                         <StackPanel Orientation="Horizontal"  >
                             <Label Width="70">Estado:</Label>
                             <ComboBox SelectedValue="{Binding Categoria.Estado, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedValuePath="Content" Width="202" Name="comboStatus">
+                            SelectedValuePath="Content" Width="202" Name="comboStatus" Margin="17,0,0,0">
                                 <ComboBoxItem IsEnabled="False" IsSelected="True" Content="Seleccionar"></ComboBoxItem>
                                 <ComboBoxItem>True</ComboBoxItem>
                                 <ComboBoxItem>False</ComboBoxItem>

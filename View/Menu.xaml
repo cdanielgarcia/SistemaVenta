@@ -91,36 +91,8 @@
                               BorderBrush="Transparent"
                               Margin="0,10,0,0"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <!--#region Inicio-->
-                        <ListViewItem Height="40">
-                            <Button x:Name="BtnInicio"
-                                    Height="40"
-                                    Width="241"
-                                    HorizontalAlignment="Left"
-                                    Cursor="Hand"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent">
-                                <Grid Width="250">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Width="50"
-                                           Grid.Column="0"
-                                           HorizontalAlignment="Center"
-                                           Source="/imagenes/logo.png"/>
-                                    <TextBlock Grid.Column="1"
-                                               Text="Inicio"
-                                               FontWeight="SemiBold"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"
-                                               Foreground="#efeff1" FontFamily="Bahnschrift" Margin="30,0,0,0"/>
-                                </Grid>
-                            </Button>
-                        </ListViewItem>
-                        <!--#endregion-->
-                        <!--#region dos-->
+
+                        <!--#region Btncategoria_Click-->
                         <ListViewItem Height="40">
                             <Button x:Name="Btndos"
                                     Height="40"
@@ -128,7 +100,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Btncategoria_Click">
                                 <Grid Width="250">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
@@ -137,7 +110,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/logo.png"/>
+                                           Source="/imagenes/star.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Categoría"
                                                FontWeight="SemiBold"
@@ -149,7 +122,7 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
-                        <!--#region tres-->
+                        <!--#region Btncliente_Click-->
                         <ListViewItem Height="40">
                             <Button x:Name="Btntres"
                                     Height="40"
@@ -157,7 +130,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Btncliente_Click">
                                 <Grid Width="250">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
@@ -166,7 +140,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/logo.png"/>
+                                           Source="/imagenes/star.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Cliente"
                                                FontWeight="SemiBold"
@@ -178,7 +152,7 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
-                        <!--#region Cuatro-->
+                        <!--#region Btnventa_Click-->
                         <ListViewItem Height="40">
                             <Button x:Name="Btncuatro"
                                     Height="40"
@@ -186,7 +160,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Btnventa_Click">
                                 <Grid Width="250">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
@@ -195,7 +170,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/logo.png"/>
+                                           Source="/imagenes/star.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Venta"
                                                FontWeight="SemiBold"
@@ -207,7 +182,7 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
-                        <!--#region cinco-->
+                        <!--#region Btndetalleventa_Click-->
                         <ListViewItem Height="40">
                             <Button x:Name="Btncinco"
                                     Height="40"
@@ -215,7 +190,8 @@
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"
                                     Background="Transparent"
-                                    BorderBrush="Transparent">
+                                    BorderBrush="Transparent"
+                                    Click="Btndetalleventa_Click">
                                 <Grid Width="250">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
@@ -224,9 +200,99 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/logo.png"/>
+                                           Source="/imagenes/star.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Detalle Venta"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Btnproveedores_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btnseis"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Btnproveedores_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/star.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Proveedores"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Btnroles_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btnsiete"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Btnroles_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/star.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Roles"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Btnpermisos_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btnocho"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Btnpermisos_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/star.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Permisos"
                                                FontWeight="SemiBold"
                                                FontSize="20"
                                                VerticalAlignment="Center"
