@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Permisos" Height="339" Width="500">
+        Title="Permisos" Height="339" Width="500"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:PermisosVM/>
@@ -21,7 +22,9 @@
                     <RowDefinition Height="31"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" >
+                <StackPanel Grid.Row="0d:\proyectosut\sistemaventa\view\permisos.xaml.cs
+d:\proyectosut\sistemaventa\view\permisos.xaml
+" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <Button Height="22" Width="51" Margin="5,0,0,0" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"></Button>
                         <TextBlock Text="Permisos" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>

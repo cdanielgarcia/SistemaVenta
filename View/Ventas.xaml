@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Ventas" Height="440" Width="916">
+        Title="Ventas" Height="440" Width="916"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:VentasVM/>
