@@ -22,13 +22,10 @@ namespace SistemaVenta.Model
 
         [Key]
         public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
-       
-        private int idcategoria { get; set; }
 
+        public int IdCategoria { get; set; }
         [ForeignKey("IdCategoria")]
-        public int IdCategoria { get { return idcategoria; } set { if (idcategoria != value) { idcategoria = value; OnPropertyChanged(); } } }
-
-        public virtual Categoria? Categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
 
         [StringLength(60)]
         [Display(Name = ("Código"))]

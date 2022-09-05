@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SistemaVenta.Migrations
 {
-    public partial class Uno : Migration
+    public partial class CreacionTablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,6 +16,7 @@ namespace SistemaVenta.Migrations
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -33,6 +34,7 @@ namespace SistemaVenta.Migrations
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -50,6 +52,7 @@ namespace SistemaVenta.Migrations
                     RazonSocial = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -84,6 +87,7 @@ namespace SistemaVenta.Migrations
                     Stock = table.Column<int>(type: "int", nullable: false),
                     PrecioCompra = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PrecioVenta = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -93,7 +97,8 @@ namespace SistemaVenta.Migrations
                         name: "FK_Productos_Categorias_IdCategoria",
                         column: x => x.IdCategoria,
                         principalTable: "Categorias",
-                        principalColumn: "IdCategoria");
+                        principalColumn: "IdCategoria",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +118,8 @@ namespace SistemaVenta.Migrations
                         name: "FK_Permisos_Roles_IdRol",
                         column: x => x.IdRol,
                         principalTable: "Roles",
-                        principalColumn: "IdRol");
+                        principalColumn: "IdRol",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -127,6 +133,7 @@ namespace SistemaVenta.Migrations
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Clave = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -136,7 +143,8 @@ namespace SistemaVenta.Migrations
                         name: "FK_Usuarios_Roles_IdRol",
                         column: x => x.IdRol,
                         principalTable: "Roles",
-                        principalColumn: "IdRol");
+                        principalColumn: "IdRol",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,12 +167,14 @@ namespace SistemaVenta.Migrations
                         name: "FK_Compras_Proveedores_IdProveedor",
                         column: x => x.IdProveedor,
                         principalTable: "Proveedores",
-                        principalColumn: "IdProveedor");
+                        principalColumn: "IdProveedor",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Compras_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuarios",
-                        principalColumn: "IdUsuario");
+                        principalColumn: "IdUsuario",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,7 +200,8 @@ namespace SistemaVenta.Migrations
                         name: "FK_Ventas_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuarios",
-                        principalColumn: "IdUsuario");
+                        principalColumn: "IdUsuario",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,12 +225,14 @@ namespace SistemaVenta.Migrations
                         name: "FK_DetalleCompras_Compras_IdCompra",
                         column: x => x.IdCompra,
                         principalTable: "Compras",
-                        principalColumn: "IdCompra");
+                        principalColumn: "IdCompra",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DetalleCompras_Productos_IdProducto",
                         column: x => x.IdProducto,
                         principalTable: "Productos",
-                        principalColumn: "IdProducto");
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,12 +255,14 @@ namespace SistemaVenta.Migrations
                         name: "FK_DetalleVentas_Productos_IdProducto",
                         column: x => x.IdProducto,
                         principalTable: "Productos",
-                        principalColumn: "IdProducto");
+                        principalColumn: "IdProducto",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DetalleVentas_Ventas_IdVenta",
                         column: x => x.IdVenta,
                         principalTable: "Ventas",
-                        principalColumn: "IdVenta");
+                        principalColumn: "IdVenta",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

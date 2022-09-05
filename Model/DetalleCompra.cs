@@ -17,18 +17,16 @@ namespace SistemaVenta.Model
         [Key]
         public int IdDetalleCompra { get { return iddetallecompra; } set { if (iddetallecompra != value) { iddetallecompra = value; OnPropertyChanged(); } } }
 
-        private int idcompra { get; set; }
+        public int IdCompra { get; set; }
 
         [ForeignKey("IdCompra")]
-        public int IdCompra { get { return idcompra; } set { if (idcompra != value) { idcompra = value; OnPropertyChanged(); } } }
+        public virtual Compra Compra { get; set; }
 
-        public virtual Compra? Compra { get; set; }
-        private int idproducto { get; set; }
+        public int IdProducto { get; set; }
 
         [ForeignKey("IdProducto")]
-        public int IdProducto { get { return idproducto; } set { if (idproducto != value) { idproducto = value; OnPropertyChanged(); } } }
+        public virtual Producto Producto { get; set; }
 
-        public virtual Producto? Producto { get; set; }
 
         [Display(Name = ("Precio compra"))]
         [RegularExpression(@"^\d+(\.\d{1,2})?$")]
