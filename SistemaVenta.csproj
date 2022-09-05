@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\BtnMenu.png" />
     <None Remove="Imagenes\Categoria.png" />
+    <None Remove="Imagenes\Cerrar.png" />
+    <None Remove="Imagenes\desc-menu.png" />
+    <None Remove="Imagenes\icon-menu.png" />
     <None Remove="Imagenes\logo.png" />
+    <None Remove="Imagenes\Minimizar.png" />
+    <None Remove="Imagenes\Productos.png" />
+    <None Remove="Imagenes\Usuario.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,10 +32,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Imagenes\BtnMenu.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Imagenes\Categoria.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Imagenes\Cerrar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\desc-menu.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\icon-menu.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Imagenes\logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\Minimizar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\Productos.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\Usuario.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -16,12 +16,22 @@ namespace SistemaVenta.View
 {
     /// <summary>
     /// Lógica de interacción para Menu.xaml
-    /// </summary>
+    /// </summary>    
     public partial class Menu : Window
     {
         public Menu()
         {
             InitializeComponent();
+        }
+
+        private void btn_Minimizar(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btn_Cerrar(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
