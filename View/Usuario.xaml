@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="Usuario" Height="806" Width="468"
         WindowStyle="None"
-        >
-
-
-
+        WindowStartupLocation="CenterScreen">
 
     <Border CornerRadius="12">
         <Border.Background>

@@ -328,5 +328,12 @@ namespace SistemaVenta.View
                 MessageBox.Show("No se encuentra la venta.");
             }
         }
+
+        private void volver_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Close();
+        }
     }
 }

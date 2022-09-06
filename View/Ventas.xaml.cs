@@ -132,5 +132,12 @@ namespace SistemaVenta.View
             decimal total = precio * cantidad;
             txtTotalPagar.Text = total.ToString("F", CultureInfo.InvariantCulture);
         }
+
+        private void volver_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Close();
+        }
     }
 }
