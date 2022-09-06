@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Cliente" Height="400" Width="500">
+        Title="Cliente" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:ClienteVM/>

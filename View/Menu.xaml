@@ -110,7 +110,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Categoría"
                                                FontWeight="SemiBold"
@@ -140,7 +140,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Cliente"
                                                FontWeight="SemiBold"
@@ -170,7 +170,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Venta"
                                                FontWeight="SemiBold"
@@ -200,7 +200,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Detalle Venta"
                                                FontWeight="SemiBold"
@@ -230,7 +230,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Proveedores"
                                                FontWeight="SemiBold"
@@ -260,7 +260,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Roles"
                                                FontWeight="SemiBold"
@@ -290,7 +290,7 @@
                                     <Image Width="50"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
-                                           Source="/imagenes/star.png"/>
+                                           Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
                                                Text="Permisos"
                                                FontWeight="SemiBold"
@@ -302,11 +302,16 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
-
                     </ListView>
                     <!--#endregion-->
 
                 </StackPanel>
+
+                <Button Margin="12,518,202,13" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrar_Sesion">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/cerrar-sesion.png"/>
+                    </Button.Background>
+                </Button>
 
             </Grid>
             <!--#endregion-->

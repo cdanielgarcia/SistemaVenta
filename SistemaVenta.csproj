@@ -10,14 +10,17 @@
   <ItemGroup>
     <None Remove="Imagenes\BtnMenu.png" />
     <None Remove="Imagenes\Categoria.png" />
+    <None Remove="Imagenes\cerrar-sesion.png" />
     <None Remove="Imagenes\Cerrar.png" />
     <None Remove="Imagenes\desc-menu.png" />
+    <None Remove="Imagenes\flecha-menu.png" />
     <None Remove="Imagenes\icon-menu.png" />
     <None Remove="Imagenes\logo.png" />
     <None Remove="Imagenes\Minimizar.png" />
     <None Remove="Imagenes\Productos.png" />
     <None Remove="Imagenes\star.png" />
     <None Remove="Imagenes\Usuario.png" />
+    <None Remove="View\cerrar-sesion.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,10 +42,16 @@
     <Resource Include="Imagenes\Categoria.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Imagenes\cerrar-sesion.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Imagenes\Cerrar.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Imagenes\desc-menu.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\flecha-menu.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Imagenes\icon-menu.png">
@@ -57,12 +66,10 @@
     <Resource Include="Imagenes\Productos.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Imagenes\star.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Imagenes\Usuario.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="View\cerrar-sesion.png" />
   </ItemGroup>
 
   <ItemGroup>

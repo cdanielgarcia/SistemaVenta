@@ -82,5 +82,12 @@ namespace SistemaVenta.View
             permisos.Show();
             this.Close();
         }
+
+        private void btnCerrar_Sesion(object sender, RoutedEventArgs e)
+        {
+            MainWindow inicio = new MainWindow();
+            inicio.Show();
+            this.Close();
+        }
     }
 }
