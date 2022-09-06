@@ -83,6 +83,13 @@ namespace SistemaVenta.View
             this.Close();
         }
 
+        private void Btnproductos_Click(object sender, RoutedEventArgs e)
+        {
+            Producto producto = new Producto();
+            producto.Show();
+            this.Close();
+        }
+
         private void btnCerrar_Sesion(object sender, RoutedEventArgs e)
         {
             MainWindow inicio = new MainWindow();
