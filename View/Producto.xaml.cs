@@ -23,5 +23,12 @@ namespace SistemaVenta.View
         {
             InitializeComponent();
         }
+
+        private void volver_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Close();
+        }
     }
 }
