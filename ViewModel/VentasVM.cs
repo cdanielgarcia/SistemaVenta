@@ -39,7 +39,7 @@ namespace SistemaVenta.ViewModel
                 this.DetalleVenta.IdDetalleVenta = 0;
                 this.DetalleVenta.SubTotal = this.Venta.MontoTotal;
                 this.Venta.NumeroDocumento = DateTime.Now.ToString("MMddyyyyHHmmss");
-                this.Venta.IdUsuario = 1; // Toca cambiarlo por el usuario que esta registrando la factura.
+                this.Venta.IdUsuario = 3; // Toca cambiarlo por el usuario que esta registrando la factura.
                 this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
 
                 if ((this.Venta.TipoDocumento == null || this.Venta.TipoDocumento == "") ||

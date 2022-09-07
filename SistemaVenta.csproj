@@ -19,7 +19,6 @@
     <None Remove="Imagenes\Minimizar.png" />
     <None Remove="Imagenes\Productos.png" />
     <None Remove="Imagenes\star.png" />
-    <None Remove="Imagenes\Usuario.png" />
     <None Remove="View\cerrar-sesion.png" />
   </ItemGroup>
 
@@ -64,9 +63,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Imagenes\Productos.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Imagenes\Usuario.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="View\cerrar-sesion.png" />
