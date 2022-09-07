@@ -5,137 +5,210 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaVenta.View"
         mc:Ignorable="d"
-        Title="Usuario" Height="500" Width="468"
-        WindowStyle="None"
+        Title="Usuario" Height="650" Width="1000"
+        Background="Transparent"
         WindowStartupLocation="CenterScreen">
 
-    <Border CornerRadius="12">
-       
+    <Border Background="#b3e5fc">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="Titulo" 
+                       Text="Usuario"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="5"
+                       FontSize="40"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Comic Sans MS"
+                       FontWeight="Bold"
+                       Foreground="#3949ab"/>
+            <TextBlock Grid.Row="4"
+                       Grid.Column="1"
+                       Text="Documento:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="4"
+                     Grid.Column="2" 
+                     x:Name="tbDocumento"
+                     Text="{Binding Documento.Usuario}"/>
 
-        <Border>
-            <Grid Margin="0,0,10,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" >
-                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                        <TextBlock Text="Usuario" FontSize="25" Foreground="Black" FontWeight="Bold" Height="28" Width="163" TextAlignment="Center"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Grid.Row="1" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="129">Documento:</Label>
-                        <TextBox Text="{Binding Documento.Usuario}" Width="186" Foreground="#FF2B083B" TextChanged="TextBox_TextChanged" BorderBrush="Black" BorderThickness="3,3,3,3" FontSize="16"/>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="4"
+                       Grid.Column="4"
+                       Text="Nombre Completo:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="4"
+                     Grid.Column="5" 
+                     x:Name="tbNombre"
+                     Text="{Binding Nombre_Completo.Usuario}"/>
 
-                <StackPanel Grid.Row="2" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="129">Nombre_Completo:</Label>
-                        <TextBox Text="{Binding Nombre_Completo.Usuario}" Width="186"></TextBox>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="6"
+                       Grid.Column="1"
+                       Text="Correo:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="6"
+                     Grid.Column="2" 
+                     x:Name="tbCorreo"
+                     Text="{Binding Correo.Usuario}"/>
 
-                <StackPanel Grid.Row="3" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="128">Correo:</Label>
-                        <TextBox Text="{Binding Correo.Usuario}" Width="186"></TextBox>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="6"
+                       Grid.Column="4"
+                       Text="Contraseña:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="6"
+                     Grid.Column="5" 
+                     x:Name="tbContraseña"
+                     Text="{Binding Contraseña.Usuario}"/>
 
-                <StackPanel Grid.Row="4" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="128">Contraseña:</Label>
-                        <TextBox Text="{Binding Contraseña.Usuario}" Width="184"></TextBox>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="8"
+                       Grid.Column="1"
+                       Text="Confirmar Contraseña:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <TextBox Grid.Row="8"
+                     Grid.Column="2" 
+                     x:Name="tbConfirmarContraseña"
+                     Text="{Binding Confirmar_Contraseña.Usuario}"/>
 
-                <StackPanel Grid.Row="5" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="129">Confirmar_Contraseña:</Label>
-                        <TextBox Text="{Binding Confirmar_Contraseña.Usuario}" Width="184"></TextBox>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="8"
+                       Grid.Column="4"
+                       Text="Rol:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <ComboBox Grid.Row="8"
+                     Grid.Column="5" 
+                     x:Name="cbRol"
+                     IsSelected="True">
+                <ComboBoxItem IsSelected="True" 
+                              Content="Empleado"/>
+                <ComboBoxItem Content="Administrador" />
+            </ComboBox>
 
-                <StackPanel Grid.Row="6" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="125" Content="Rol:"/>
-                        <ComboBox Height="30" Width="188">
-                            <ComboBoxItem IsSelected="True" Content="Empleado" />
-                            <ComboBoxItem Content="Administrador" />
-                        </ComboBox>
-                    </StackPanel>
-                </StackPanel>
+            <TextBlock Grid.Row="10"
+                       Grid.Column="1"
+                       Text="Estado:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontFamily="Comic Sans MS"/>
+            <ComboBox Grid.Row="10"
+                     Grid.Column="2" 
+                     x:Name="cbEstado"
+                     IsSelected="True">
+                <ComboBoxItem IsSelected="True" 
+                              Content="Activo"/>
+                <ComboBoxItem Content="No Activo" />
+            </ComboBox>
 
-                <StackPanel Grid.Row="7" >
-                    <StackPanel  Orientation="Horizontal" >
-                        <Label Width="125" Content="Rol:"/>
-                        <ComboBox Height="30" Width="188">
-                            <ComboBoxItem IsSelected="True" Content="Activo" />
-                            <ComboBoxItem Content="No Activo" />
-                        </ComboBox>
-                    </StackPanel>
-                </StackPanel>
+            <Button Grid.Row="12"
+                    Grid.Column="1"
+                    Command="{Binding cmd_Insertar}"
+                    Background="#fff9c4"
+                    BorderBrush="#cbc693"
+                    BorderThickness="3"
+                    Foreground="#fbc02d"
+                    Cursor="Hand"
+                    Margin="20,0,20,0">Insertar</Button>
 
+            <Button Grid.Row="14"
+                    Grid.Column="1"
+                    Command="{Binding cmd_Modifica}"
+                    Background="#f0f4c3"
+                    BorderBrush="#bdc192"
+                    BorderThickness="3"
+                    Foreground="#7c8500"
+                    Cursor="Hand"
+                    Margin="20,0,20,0">Modificar</Button>
 
-                <StackPanel Grid.Row="8" Margin="10,82,-10,0" Height="160" VerticalAlignment="Top">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="37*" />
-                            <ColumnDefinition Width="134*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0">
-                            <Button Command="{Binding cmd_Insertar}" Margin="6">Insertar</Button>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Grid.Column="0">
-                            <Button Command="{Binding cmd_Modifica}" Margin="5">Modificar</Button>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="0">
-                            <Button Command="{Binding cmd_Borrar}" Margin="5">Borrar</Button>
-                        </StackPanel>
-                        <StackPanel Grid.Row="3" Grid.Column="0">
-                            <Button Command="{Binding cmd_Consultar}" Margin="5">Consultar</Button>
-                        </StackPanel>
-                        <StackPanel Grid.Row="4" Grid.Column="0">
-                            <Button  Margin="5">Salir</Button>
-                            <!-- <misCon:BotonA Texto="Salir" /> -->
-                        </StackPanel>
-                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
-                            <Border Margin="6" BorderBrush="BurlyWood" BorderThickness="3,3,1,1" CornerRadius="8,8,8,8" Height="138" >
-                                <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Categoria}"  >
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Descripcion}" Width="200" Foreground="Blue" />
-                                                <TextBlock Text="{Binding Estado}" Width="400" Foreground="Blue" />
-                                                <TextBlock Text="{Binding CategoriaID}" Foreground="Blue"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </Border>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </Grid>
-        </Border>
+            <Button Grid.Row="16"
+                    Grid.Column="1"
+                    Command="{Binding cmd_Borrar}"
+                    Background="#ef9a9a"
+                    BorderBrush="#ba6b6c"
+                    BorderThickness="3"
+                    Foreground="#c62828"
+                    Cursor="Hand"
+                    Margin="20,0,20,0">Borrar</Button>
 
+            <Button Grid.Row="18"
+                    Grid.Column="1"
+                    Command="{Binding cmd_Consultar}"
+                    Background="#e5ffff"
+                    BorderBrush="#b2ebf2"
+                    BorderThickness="3"
+                    Foreground="#81b9bf"
+                    Cursor="Hand"
+                    Margin="20,0,20,0">Consultar</Button>
+
+            <Button Grid.Row="20"
+                    Grid.Column="1"
+                    Background="#fff7ff"
+                    BorderBrush="#d1c4e9"
+                    BorderThickness="3"
+                    Foreground="#a094b7"
+                    Cursor="Hand"
+                    Margin="20,0,20,0">Salir</Button>
+
+            <Border Grid.Row="12" 
+                    Grid.Column="2" 
+                    Grid.RowSpan="9" 
+                    Grid.ColumnSpan="4"
+                    BorderBrush="#3949ab"
+                    BorderThickness="3"
+                    Background="#efebe9">
+
+                <ListBox ItemsSource="{Binding Lista}" SelectedItem="{Binding Categoria}"  >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Descripcion}" Width="200" Foreground="Black" />
+                                <TextBlock Text="{Binding Estado}" Width="400" Foreground="Black" />
+                                <TextBlock Text="{Binding CategoriaID}" Foreground="Black"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Grid>
     </Border>
 </Window>
