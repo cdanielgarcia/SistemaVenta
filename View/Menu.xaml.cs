@@ -90,6 +90,27 @@ namespace SistemaVenta.View
             this.Close();
         }
 
+        private void Btncompra_Click(object sender, RoutedEventArgs e)
+        {
+            Compras compras = new Compras();
+            compras.Show();
+            this.Close();
+        }
+
+        private void BtndetalleCompras_Click(object sender, RoutedEventArgs e)
+        {
+            DetalleCompras detalleCompras = new DetalleCompras();
+            detalleCompras.Show();
+            this.Close();
+        }
+
+        private void Btnusuarios_Click(object sender, RoutedEventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Show();
+            this.Close();
+        }
+
         private void btnCerrar_Sesion(object sender, RoutedEventArgs e)
         {
             MainWindow inicio = new MainWindow();

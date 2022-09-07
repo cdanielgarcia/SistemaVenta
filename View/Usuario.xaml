@@ -209,6 +209,8 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Border>
+            <Button Grid.Column="1" Content="Volver" HorizontalAlignment="Center" Height="36" Grid.Row="1" VerticalAlignment="Center" Width="80"
+                    x:Name="volver_Menu" Click="volver_Menu_Click"/>
         </Grid>
     </Border>
 </Window>

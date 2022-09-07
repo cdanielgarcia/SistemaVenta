@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         mc:Ignorable="d"
         Title="Menu" 
-        Height="600" 
+        Height="772" 
         Width="1000"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -80,10 +80,10 @@
                   Margin="0,35,0,0">
                 <Border Background="#1f1f23"
                         CornerRadius="0,0,0,10">
-                    <Label Content="V2022" HorizontalAlignment="Left" Height="27" Margin="105,518,0,0" VerticalAlignment="Center" Width="42" FontFamily="Bahnschrift" Foreground="White"/>
+                    <Label Content="V2022" HorizontalAlignment="Left" Height="27" Margin="105,680,0,0" VerticalAlignment="Center" Width="42" FontFamily="Bahnschrift" Foreground="White"/>
                 </Border>
                 <StackPanel Background="Transparent"
-                            VerticalAlignment="Center" Height="565">
+                            VerticalAlignment="Center" Height="737">
                     <!--#region lista-->
                     <Image Height="163" Source="/Imagenes/icon-menu.png" Stretch="Fill" Width="130"/>
                     <!--#region lista-->
@@ -202,7 +202,7 @@
                                            HorizontalAlignment="Center"
                                            Source="/imagenes/flecha-menu.png"/>
                                     <TextBlock Grid.Column="1"
-                                               Text="Detalle Venta"
+                                               Text="DetalleVenta"
                                                FontWeight="SemiBold"
                                                FontSize="20"
                                                VerticalAlignment="Center"
@@ -332,12 +332,102 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
+                        <!--#region Btncompra_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btndiez"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Btncompra_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/flecha-menu.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Compras"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region BtndetalleCompras_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btnonce"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="BtndetalleCompras_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/flecha-menu.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="DetalleCompras"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Btnusuarios_Click-->
+                        <ListViewItem Height="40">
+                            <Button x:Name="Btndoce"
+                                    Height="40"
+                                    Width="241"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Click="Btnusuarios_Click">
+                                <Grid Width="250">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/imagenes/flecha-menu.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Usuarios"
+                                               FontWeight="SemiBold"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
                     </ListView>
                     <!--#endregion-->
 
                 </StackPanel>
 
-                <Button Margin="12,518,202,13" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrar_Sesion">
+                <Button Margin="12,685,202,13" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrar_Sesion">
                     <Button.Background>
                         <ImageBrush ImageSource="/View/cerrar-sesion.png"/>
                     </Button.Background>
@@ -348,25 +438,27 @@
             <!--#region Content-->
             <Grid x:Name="GridContent"
                   Background="Transparent"
-                  VerticalAlignment="Bottom"
                   HorizontalAlignment="Right"
-                  Height="565"
-                  Width="750">
+                  Width="750" Margin="0,45,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="377*"/>
+                    <ColumnDefinition Width="373*"/>
+                </Grid.ColumnDefinitions>
                 <Border CornerRadius="0,0,0,10"
-                        Background="#efeff1">
+                        Background="#efeff1" Margin="0,-8,0,0" Grid.ColumnSpan="2">
                 </Border>
 
                 <TextBlock Text="Bienvenidos a la APP "
                            VerticalAlignment="Top"
-                           HorizontalAlignment="Center"
-                           FontSize="25" Margin="0,50,0,0"/>
+                           HorizontalAlignment="Left"
+                           FontSize="25" Margin="257,142,0,0" Grid.ColumnSpan="2"/>
                 <TextBlock Text=" Sistema de Ventas"
                            VerticalAlignment="Top"
-                           HorizontalAlignment="Center"
-                           FontSize="35" Margin="0,90,0,0" FontWeight="Bold"/>
-                <Image Source="/Imagenes/desc-menu.png" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Center" Height="408" Width="540" Margin="0,156,0,0"/>
+                           HorizontalAlignment="Left"
+                           FontSize="35" Margin="222,74,0,0" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                <Image Source="/Imagenes/desc-menu.png" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left" Height="494" Width="654" Margin="49,197,0,0" Grid.ColumnSpan="2"/>
 
-                <DockPanel LastChildFill="True">
+                <DockPanel LastChildFill="True" Grid.ColumnSpan="2">
                     <StackPanel Name="stackPanel1" DockPanel.Dock="Left" Width="0" />
 
                 </DockPanel>
