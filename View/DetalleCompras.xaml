@@ -1,0 +1,61 @@
+﻿<Window x:Class="SistemaVenta.View.DetalleCompras"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaVenta.View"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
+        mc:Ignorable="d"
+        Title="Detalle Compras" Height="440" Width="916"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:DetalleComprasVM/>
+    </Window.DataContext>
+
+    <Grid Background="Azure" Height="424" VerticalAlignment="Center">
+        <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
+            <Grid>
+                <Button Height="22" Margin="20,13,798,363" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"/>
+                <TextBlock Text="Detalle Compras" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="107,10,620,362"/>
+
+                <Label Content="Número Documento:" Margin="15,55,727,315"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="146,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124"
+                         Name="txtDocumentoId" Text="{Binding Compra.NumeroDocumento, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Consultar" HorizontalAlignment="Left" Height="28" Margin="284,56,0,0" VerticalAlignment="Top" Width="96"
+                        Click="Consultar_compra" Command="{Binding cmd_Consultar}"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Compra&#xD;&#xA;" Margin="11,107,0,0" VerticalAlignment="Top" Width="328"/>
+                <Label Content="Tipo Documento:" Margin="185,123,567,247"/>
+                <Label Content="Fecha:" Margin="19,124,797,244"/>
+                <DatePicker HorizontalAlignment="Left" Height="28" Margin="22,150,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"
+                            Name="txtFechaRegistro" SelectedDate="{Binding Compra.FechaRegistro, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedDateFormat="Short"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="190,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsEnabled="False"
+                         Name="txtTipoDocumento" Text="{Binding Compra.TipoDocumento, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Proveedor" Margin="343,99,0,0" VerticalAlignment="Top" Width="522"/>
+                <Label Content="Nombre:" Margin="539,120,161,247"/>
+                <Label Content="Número Documento:" Margin="352,121,367,245"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="357,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" IsEnabled="False"
+                         Name="txtNumeroDocumento" Text="{Binding Venta.DocumentoCliente, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="545,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" IsEnabled="False"
+                         Name="txtNombreCompleto" Text="{Binding Venta.NombreCompleto, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="93" Header="Tabla Compras:" Margin="10,199,0,0" VerticalAlignment="Top" Width="694"/>
+                <DataGrid HorizontalAlignment="Left" Height="62" Margin="18,223,0,0" VerticalAlignment="Top" Width="675" Name="getDataCompra"/>
+                <GroupBox HorizontalAlignment="Left" Height="92" Header="Tabla DetalleCompras:" Margin="10,296,0,0" VerticalAlignment="Top" Width="694"/>
+                <DataGrid HorizontalAlignment="Left" Height="65" Margin="15,316,0,0" VerticalAlignment="Top" Width="684" Name="getDataDetalleCompra"/>
+                <Button Content="Descargar PDF" HorizontalAlignment="Left" Height="30" Margin="721,217,0,0" VerticalAlignment="Top" Width="136"
+                        Click="Descargar_pdf"/>
+                <Button Content="Descargar Excel" HorizontalAlignment="Left" Height="30" Margin="720,260,0,0" VerticalAlignment="Top" Width="136"
+                        Click="Descargar_excel"/>
+                <Button Content="Salir" HorizontalAlignment="Left" Height="30" Margin="720,301,0,0" VerticalAlignment="Top" Width="136"
+                        Click="DetalleCompras_salir"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
+
+

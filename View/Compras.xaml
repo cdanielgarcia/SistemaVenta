@@ -1,0 +1,70 @@
+﻿<Window x:Class="SistemaVenta.View.Compras"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaVenta.View"
+        xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
+        mc:Ignorable="d"
+        Title="Compras" Height="440" Width="916"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:ComprasVM/>
+    </Window.DataContext>
+
+    <Grid Background="Azure" Height="424" VerticalAlignment="Center">
+        <Border Margin="10" BorderBrush="Black" BorderThickness="5,5,1,1" CornerRadius="8,8,8,8">
+            <Grid>
+                <Button Height="22" Margin="18,3,804,373" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"/>
+                <TextBlock Text="Compras" FontSize="20" Foreground="Brown" FontWeight="Bold" Width="163" Margin="110,0,617,372"/>
+
+                <TextBox HorizontalAlignment="Left" Height="29" Margin="797,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Name="txtIdProveedor" IsEnabled="False" Text="{Binding Compra.IdProveedor, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="82" Header="Información Compra" Margin="12,33,0,0" VerticalAlignment="Top" Width="328"/>
+                <Label Content="Tipo Documento:" Margin="149,51,606,319"/>
+                <ComboBox Height="30" Margin="154,75,559,293" Name="comboDocumento" SelectedValue="{Binding Compra.TipoDocumento, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                    <ComboBoxItem IsSelected="True">FACTURA SIMPLIFICADA</ComboBoxItem>
+                    <ComboBoxItem>FACTURA ELECTRONICA</ComboBoxItem>
+                </ComboBox>
+                <Label Content="Fecha:" Margin="20,50,789,318"/>
+                <DatePicker HorizontalAlignment="Left" Height="28" Margin="23,76,0,0" VerticalAlignment="Top" Width="113" Name="txtFechaRegistro" 
+                            SelectedDate="{Binding Compra.FechaRegistro, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedDateFormat="Short"/>
+
+                <GroupBox HorizontalAlignment="Left" Height="90" Header="Información Proveedor" Margin="344,25,0,0" VerticalAlignment="Top" Width="525"/>
+                <Label Content="Nombre:" Margin="540,46,178,321"/>
+                <Label Content="Número Documento:" Margin="353,47,379,319"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="358,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Name="txtNumeroDocumentoPro"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="546,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" IsEnabled="False" Name="txtNombrePro"/>
+                <Button Content="Buscar Proveedor" Click="Buscar_proveedor" HorizontalAlignment="Left" Height="27" Margin="741,74,0,0" VerticalAlignment="Top" Width="108"/>
+
+                <GroupBox HorizontalAlignment="Center" Height="93" Header="Información del Producto" Margin="0,120,0,0" VerticalAlignment="Top" Width="858"/>
+                <Label Content="Código Producto:" Margin="21,143,765,214"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="25,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Name="txtIdProducto" Text="{Binding DetalleCompra.IdProducto, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Nombre Producto:" Margin="135,143,599,223"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="139,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" IsEnabled="False" Name="txtNombreProducto"/>
+                <Button Content="►" Click="Buscar_producto" HorizontalAlignment="Left" Height="26" Margin="97,169,0,0" VerticalAlignment="Top" Width="28"/>
+                <Label Width="125" Content="Precio Compra:" Margin="367,144,398,222"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="371,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Name="txtPrecioCompra" Text="{Binding DetalleCompra.PrecioCompra, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Width="125" Content="Stock:" Margin="464,143,301,223"/>
+                <Label Content="Cantidad:" Margin="552,143,256,223"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="555,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Name="txtCantidad" Text="{Binding DetalleCompra.Cantidad, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Width="125" Content="Total a Pagar:" Margin="625,142,140,224"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="630,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" IsEnabled="False" Name="txtTotalPagar" Text="{Binding Compra.MontoTotal, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="►" Click="Obtener_total" HorizontalAlignment="Left" Height="26" Margin="698,169,0,0" VerticalAlignment="Top" Width="28"/>
+                <Label Width="125" Content="Precio Venta:" Margin="744,142,21,224"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="748,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Name="txtPrecioVenta" Text="{Binding DetalleCompra.PrecioVenta, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="470,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" IsEnabled="False" Name="txtStock" Text="{Binding Producto.Stock, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGrid HorizontalAlignment="Left" Height="151" Margin="13,223,0,0" VerticalAlignment="Top" Width="690" Name="getData"/>
+                <Button Content="Crear Venta" Command="{Binding cmd_Insertar}" HorizontalAlignment="Left" Height="27" Margin="727,284,0,0" VerticalAlignment="Top" Width="136"/>
+                <Button Content="Salir" Click="Compras_salir" HorizontalAlignment="Left" Height="27" Margin="727,323,0,0" VerticalAlignment="Top" Width="136"/>
+                <Button Content="Actualizar" Click="Actualizar_grid" HorizontalAlignment="Left" Height="27" Margin="727,247,0,0" VerticalAlignment="Top" Width="136"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
+
+

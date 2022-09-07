@@ -27,78 +27,90 @@ namespace SistemaVenta.View
     /// <summary>
     /// Lógica de interacción para Categoria.xaml
     /// </summary>
-    public partial class DetalleVentas : System.Windows.Window
+    public partial class DetalleCompras : System.Windows.Window
     {
         ApplicationDbContext dataEntities = new ApplicationDbContext();
 
-        public DetalleVentas()
+        public DetalleCompras()
         {
             InitializeComponent();
         }
 
         private void getDataGrid(string Id)
         {
-            var existVentaId = (from e in dataEntities.Ventas
+            var existPurcharseId = (from e in dataEntities.Compras
                                 where e.NumeroDocumento == Id
                                 select e).FirstOrDefault();
 
-            if (existVentaId != null)
+            if (existPurcharseId != null)
             {
-                var venta =
-                from v in dataEntities.Ventas
-                where v.NumeroDocumento == Id
+                var compra =
+                from c in dataEntities.Compras
+                where c.NumeroDocumento == Id
                 select new
                 {
-                    v.IdVenta,
-                    v.IdUsuario,
-                    v.TipoDocumento,
-                    v.NumeroDocumento,
-                    v.DocumentoCliente,
-                    v.NombreCompleto,
-                    v.MontoPago,
-                    v.MontoCambio,
-                    v.MontoTotal,
-                    v.FechaRegistro
+                    c.IdCompra,
+                    c.IdUsuario,
+                    c.IdProveedor,
+                    c.TipoDocumento,
+                    c.NumeroDocumento,
+                    c.MontoTotal,
+                    c.FechaRegistro
                 };
 
-                var detalleVenta =
-                from d in dataEntities.DetalleVentas
-                where d.IdVenta == existVentaId.IdVenta
+                var detalleCompra =
+                from d in dataEntities.DetalleCompras
+                where d.IdCompra == existPurcharseId.IdCompra
                 select new
                 {
-                    d.IdDetalleVenta,
-                    d.IdVenta,
+                    d.IdDetalleCompra,
+                    d.IdCompra,
                     d.IdProducto,
+                    d.PrecioCompra,
                     d.PrecioVenta,
                     d.Cantidad,
-                    d.SubTotal,
+                    d.MontoTotal,
                     d.FechaRegistro
                 };
 
-                getDataVenta.ItemsSource = venta.ToList();
-                getDataDetalleVenta.ItemsSource = detalleVenta.ToList();
+                getDataCompra.ItemsSource = compra.ToList();
+                getDataDetalleCompra.ItemsSource = detalleCompra.ToList();
             }
             else
             {
-                getDataVenta.ItemsSource = null;
-                getDataVenta.Items.Refresh();
+                getDataCompra.ItemsSource = null;
+                getDataCompra.Items.Refresh();
 
-                getDataDetalleVenta.ItemsSource = null;
-                getDataDetalleVenta.Items.Refresh();
+                getDataDetalleCompra.ItemsSource = null;
+                getDataDetalleCompra.Items.Refresh();
 
-                MessageBox.Show("No existe el numero de documento de la Venta.");
+                MessageBox.Show("No existe el numero de documento de la Compra.");
                 return;
             }
         }
 
-        private void DetalleVentas_salir(object sender, RoutedEventArgs e)
+        private void DetalleCompras_salir(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Consultar_venta(object sender, RoutedEventArgs e)
+        private void Consultar_compra(object sender, RoutedEventArgs e)
         {
             this.getDataGrid(txtDocumentoId.Text);
+
+            var getPurcharse = (from c in dataEntities.Compras
+                                where c.NumeroDocumento == txtDocumentoId.Text
+                                select c).FirstOrDefault();
+
+            if (getPurcharse != null)
+            {
+                var getInfoPro = (from p in dataEntities.Proveedores
+                                  where p.IdProveedor == getPurcharse.IdProveedor
+                                  select p).FirstOrDefault();
+
+                txtNumeroDocumento.Text = getPurcharse.NumeroDocumento;
+                txtNombreCompleto.Text = getInfoPro.RazonSocial;
+            }
         }
 
         private void Descargar_pdf(object sender, RoutedEventArgs e)
@@ -109,28 +121,33 @@ namespace SistemaVenta.View
                 (txtNumeroDocumento.Text == null || txtNumeroDocumento.Text == "") ||
                 (txtTipoDocumento.Text == null || txtTipoDocumento.Text == ""))
             {
-                MessageBox.Show("Consulte primero si existe la Venta.");
+                MessageBox.Show("Consulte primero si existe la Compra.");
                 return;
             }
 
-            var venta =
-                (from v in dataEntities.Ventas
-                 where v.NumeroDocumento == txtDocumentoId.Text
-                 select v).FirstOrDefault();
+            var compra =
+                (from c in dataEntities.Compras
+                 where c.NumeroDocumento == txtDocumentoId.Text
+                 select c).FirstOrDefault();
 
-            if (venta != null)
+            if (compra != null)
             {
-                var detalleVenta =
-                   (from d in dataEntities.DetalleVentas
-                    where d.IdVenta == venta.IdVenta
+                var detalleCompra =
+                   (from d in dataEntities.DetalleCompras
+                    where d.IdCompra == compra.IdCompra
                     select d).FirstOrDefault();
 
-                if (detalleVenta != null)
+                if (detalleCompra != null)
                 {
                     var getProduct =
-                       (from d in dataEntities.Productos
-                        where d.IdProducto == detalleVenta.IdProducto
-                        select d).FirstOrDefault();
+                        (from p in dataEntities.Productos
+                        where p.IdProducto == detalleCompra.IdProducto
+                        select p).FirstOrDefault();
+
+                    var getPro =
+                        (from p in dataEntities.Proveedores
+                         where p.IdProveedor == compra.IdProveedor
+                         select p).FirstOrDefault();
 
                     var dateTime = DateTime.Now.ToString("MMddyyyyHHmmss");
 
@@ -141,23 +158,23 @@ namespace SistemaVenta.View
                     PdfWriter pw = PdfWriter.GetInstance(doc, fs);
                     doc.Open();
                     doc.AddAuthor("SistemaVentas");
-                    doc.AddTitle("Detalle Venta: " + dateTime);
+                    doc.AddTitle("Detalle Compra: " + dateTime);
                     iTextSharp.text.Font standarFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA,
                         8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
                     doc.Add(new iTextSharp.text.Paragraph("SISTEMA DE VENTAS"));
-                    doc.Add(new iTextSharp.text.Paragraph("DETALLE DE LA VENTA | " + txtDocumentoId.Text));
+                    doc.Add(new iTextSharp.text.Paragraph("DETALLE DE LA COMPRA | " + txtDocumentoId.Text));
                     doc.Add(new iTextSharp.text.Paragraph("Fecha: " + txtFechaRegistro.Text));
                     doc.Add(Chunk.NEWLINE);
 
-                    PdfPTable tblDetalle = new PdfPTable(8);
+                    PdfPTable tblDetalle = new PdfPTable(7);
                     tblDetalle.WidthPercentage = 100;
 
-                    PdfPCell clDocCli = new PdfPCell(new Phrase("Documento Cliente", standarFont));
-                    clDocCli.BorderWidth = 0;
-                    clDocCli.BorderWidthBottom = 0.75f;
+                    PdfPCell clNroDoc = new PdfPCell(new Phrase("Numero Documento", standarFont));
+                    clNroDoc.BorderWidth = 0;
+                    clNroDoc.BorderWidthBottom = 0.75f;
 
-                    PdfPCell clNomCli = new PdfPCell(new Phrase("Nombre Cliente", standarFont));
+                    PdfPCell clNomCli = new PdfPCell(new Phrase("Nombre Proveedor", standarFont));
                     clNomCli.BorderWidth = 0;
                     clNomCli.BorderWidthBottom = 0.75f;
 
@@ -165,37 +182,32 @@ namespace SistemaVenta.View
                     clNomPro.BorderWidth = 0;
                     clNomPro.BorderWidthBottom = 0.75f;
 
-                    PdfPCell clPrePro = new PdfPCell(new Phrase("Precio Producto", standarFont));
-                    clPrePro.BorderWidth = 0;
-                    clPrePro.BorderWidthBottom = 0.75f;
-
                     PdfPCell clCantidad = new PdfPCell(new Phrase("Cantidad", standarFont));
                     clCantidad.BorderWidth = 0;
                     clCantidad.BorderWidthBottom = 0.75f;
 
-                    PdfPCell clMonPag = new PdfPCell(new Phrase("Monto Pagado", standarFont));
+                    PdfPCell clMonPag = new PdfPCell(new Phrase("Precio Compra", standarFont));
                     clMonPag.BorderWidth = 0;
                     clMonPag.BorderWidthBottom = 0.75f;
 
-                    PdfPCell clMonCam = new PdfPCell(new Phrase("Monto Cambio", standarFont));
+                    PdfPCell clMonCam = new PdfPCell(new Phrase("Precio Venta", standarFont));
                     clMonCam.BorderWidth = 0;
                     clMonCam.BorderWidthBottom = 0.75f;
 
-                    PdfPCell clTotPag = new PdfPCell(new Phrase("Total Venta", standarFont));
+                    PdfPCell clTotPag = new PdfPCell(new Phrase("Monto Total", standarFont));
                     clTotPag.BorderWidth = 0;
                     clTotPag.BorderWidthBottom = 0.75f;
 
-                    tblDetalle.AddCell(clDocCli);
+                    tblDetalle.AddCell(clNroDoc);
                     tblDetalle.AddCell(clNomCli);
                     tblDetalle.AddCell(clNomPro);
-                    tblDetalle.AddCell(clPrePro);
                     tblDetalle.AddCell(clCantidad);
                     tblDetalle.AddCell(clMonPag);
                     tblDetalle.AddCell(clMonCam);
                     tblDetalle.AddCell(clTotPag);
 
-                    clDocCli = new PdfPCell(new Phrase(txtNumeroDocumento.Text, standarFont));
-                    clDocCli.BorderWidth = 0;
+                    clNroDoc = new PdfPCell(new Phrase(txtDocumentoId.Text, standarFont));
+                    clNroDoc.BorderWidth = 0;
 
                     clNomCli = new PdfPCell(new Phrase(txtNombreCompleto.Text, standarFont));
                     clNomCli.BorderWidth = 0;
@@ -203,25 +215,21 @@ namespace SistemaVenta.View
                     clNomPro = new PdfPCell(new Phrase(getProduct.Nombre + " " + getProduct.Descripcion, standarFont));
                     clNomPro.BorderWidth = 0;
 
-                    clPrePro = new PdfPCell(new Phrase(detalleVenta.PrecioVenta.ToString("F", CultureInfo.InvariantCulture), standarFont));
-                    clPrePro.BorderWidth = 0;
-
-                    clCantidad = new PdfPCell(new Phrase(detalleVenta.Cantidad.ToString(), standarFont));
+                    clCantidad = new PdfPCell(new Phrase(detalleCompra.Cantidad.ToString(), standarFont));
                     clCantidad.BorderWidth = 0;
 
-                    clMonPag = new PdfPCell(new Phrase(venta.MontoPago.ToString("F", CultureInfo.InvariantCulture), standarFont));
+                    clMonPag = new PdfPCell(new Phrase(detalleCompra.PrecioCompra.ToString("F", CultureInfo.InvariantCulture), standarFont));
                     clMonPag.BorderWidth = 0;
 
-                    clMonCam = new PdfPCell(new Phrase(venta.MontoCambio.ToString("F", CultureInfo.InvariantCulture), standarFont));
+                    clMonCam = new PdfPCell(new Phrase(detalleCompra.PrecioVenta.ToString("F", CultureInfo.InvariantCulture), standarFont));
                     clMonCam.BorderWidth = 0;
 
-                    clTotPag = new PdfPCell(new Phrase(venta.MontoTotal.ToString("F", CultureInfo.InvariantCulture), standarFont));
+                    clTotPag = new PdfPCell(new Phrase(compra.MontoTotal.ToString("F", CultureInfo.InvariantCulture), standarFont));
                     clTotPag.BorderWidth = 0;
 
-                    tblDetalle.AddCell(clDocCli);
+                    tblDetalle.AddCell(clNroDoc);
                     tblDetalle.AddCell(clNomCli);
                     tblDetalle.AddCell(clNomPro);
-                    tblDetalle.AddCell(clPrePro);
                     tblDetalle.AddCell(clCantidad);
                     tblDetalle.AddCell(clMonPag);
                     tblDetalle.AddCell(clMonCam);
@@ -235,12 +243,12 @@ namespace SistemaVenta.View
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo obtener el detalle de la Venta.");
+                    MessageBox.Show("No se pudo obtener el detalle de la Compra.");
                 }
             }
             else
             {
-                MessageBox.Show("No se encuentra la venta.");
+                MessageBox.Show("No se encuentra la Compra.");
             }
         }
 
@@ -252,23 +260,23 @@ namespace SistemaVenta.View
                 (txtNumeroDocumento.Text == null || txtNumeroDocumento.Text == "") ||
                 (txtTipoDocumento.Text == null || txtTipoDocumento.Text == ""))
             {
-                MessageBox.Show("Consulte primero si existe la Venta.");
+                MessageBox.Show("Consulte primero si existe la Compra.");
                 return;
             }
 
-            var venta =
-                (from v in dataEntities.Ventas
-                 where v.NumeroDocumento == txtDocumentoId.Text
-                 select v).FirstOrDefault();
+            var compra =
+                 (from c in dataEntities.Compras
+                  where c.NumeroDocumento == txtDocumentoId.Text
+                  select c).FirstOrDefault();
 
-            if (venta != null)
+            if (compra != null)
             {
-                var detalleVenta =
-                   (from d in dataEntities.DetalleVentas
-                    where d.IdVenta == venta.IdVenta
+                var detalleCompra =
+                   (from d in dataEntities.DetalleCompras
+                    where d.IdCompra == compra.IdCompra
                     select d).FirstOrDefault();
 
-                if (detalleVenta != null)
+                if (detalleCompra != null)
                 {
                     Excel.Application excel = new Excel.Application();
 
@@ -276,37 +284,37 @@ namespace SistemaVenta.View
                     Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
                     Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
 
-                    for (int j = 0; j < getDataVenta.Columns.Count; j++)
+                    for (int j = 0; j < getDataCompra.Columns.Count; j++)
                     {
                         Excel.Range myRange = (Excel.Range)sheet1.Cells[1, j + 1];
                         sheet1.Cells[1, j + 1].Font.Bold = true;
                         sheet1.Columns[j + 1].ColumnWidth = 15;
-                        myRange.Value2 = getDataVenta.Columns[j].Header;
+                        myRange.Value2 = getDataCompra.Columns[j].Header;
                     }
 
-                    for (int i = 0; i < getDataVenta.Columns.Count; i++)
+                    for (int i = 0; i < getDataCompra.Columns.Count; i++)
                     {
-                        for (int j = 0; j < getDataVenta.Items.Count; j++)
+                        for (int j = 0; j < getDataCompra.Items.Count; j++)
                         {
-                            TextBlock? b = getDataVenta.Columns[i].GetCellContent(getDataVenta.Items[j]) as TextBlock;
+                            TextBlock? b = getDataCompra.Columns[i].GetCellContent(getDataCompra.Items[j]) as TextBlock;
                             Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
                             myRange.Value2 = b.Text;
                         }
                     }
 
-                    for (int j = 0; j < getDataDetalleVenta.Columns.Count; j++)
+                    for (int j = 0; j < getDataDetalleCompra.Columns.Count; j++)
                     {
                         Excel.Range myRange2 = (Excel.Range)sheet1.Cells[5, j + 1];
                         sheet1.Cells[5, j + 1].Font.Bold = true;
                         sheet1.Columns[j + 1].ColumnWidth = 15;
-                        myRange2.Value2 = getDataDetalleVenta.Columns[j].Header;
+                        myRange2.Value2 = getDataDetalleCompra.Columns[j].Header;
                     }
 
-                    for (int i = 0; i < getDataDetalleVenta.Columns.Count; i++)
+                    for (int i = 0; i < getDataDetalleCompra.Columns.Count; i++)
                     {
-                        for (int j = 0; j < getDataDetalleVenta.Items.Count; j++)
+                        for (int j = 0; j < getDataDetalleCompra.Items.Count; j++)
                         {
-                            TextBlock? b = getDataDetalleVenta.Columns[i].GetCellContent(getDataDetalleVenta.Items[j]) as TextBlock;
+                            TextBlock? b = getDataDetalleCompra.Columns[i].GetCellContent(getDataDetalleCompra.Items[j]) as TextBlock;
                             Microsoft.Office.Interop.Excel.Range myRange2 = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 6, i + 1];
                             myRange2.Value2 = b.Text;
                         }
@@ -316,12 +324,12 @@ namespace SistemaVenta.View
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo obtener el detalle de la Venta.");
+                    MessageBox.Show("No se pudo obtener el detalle de la Compra.");
                 }
             }
             else
             {
-                MessageBox.Show("No se encuentra la venta.");
+                MessageBox.Show("No se encuentra la Compra.");
             }
         }
 
