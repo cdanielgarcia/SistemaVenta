@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVenta.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace SistemaVenta.View
     /// </summary>
     public partial class Producto : Window
     {
+        ApplicationDbContext dataEntities = new ApplicationDbContext();
+
         public Producto()
         {
             InitializeComponent();
+
+            var categoria =
+            from c in dataEntities.Categorias
+            select new { Name = c.Descripcion, ID = c.IdCategoria };
+            comboCategoria.ItemsSource = categoria.ToList();
+            comboCategoria.DisplayMemberPath = "Name";
+            comboCategoria.SelectedValuePath = "ID";
         }
 
         private void volver_Menu_Click(object sender, RoutedEventArgs e)

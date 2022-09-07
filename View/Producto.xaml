@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SistemaVenta.View"
         xmlns:vm="clr-namespace:SistemaVenta.ViewModel"
         mc:Ignorable="d"
-        Title="Producto" Height="450" Width="500"
+        Title="Producto" Height="391" Width="500"
         WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
@@ -27,7 +27,7 @@
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <Button Height="22" Width="51" Margin="5,0,0,0" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"></Button>
-                        <TextBlock Text="Detalle Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
+                        <TextBlock Text="Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
@@ -53,22 +53,15 @@
 
                 <StackPanel Grid.Row="4" >
                     <StackPanel  Orientation="Horizontal" >
-                        <Label Width="88" Content="Categoria:"/>
-                        <ComboBox ItemsSource="{Binding ListaR, Mode=OneWay}" SelectedValue="{Binding Animal.RazaID}"  SelectedValuePath="RazaID" Width="182">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Nombre}" Width="300" Foreground="Tomato" />
-                                        <TextBlock Text="{Binding CategoriaID}" Width="100" Foreground="Tomato" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
+                        <Label Width="87">Categoría:</Label>
+                        <ComboBox SelectedValue="{Binding Producto.IdCategoria, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedValuePath="Content" Width="185" Name="comboCategoria">
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
 
 
-                <StackPanel Grid.Row="5" Margin="0,84,0,10">
+                <StackPanel Grid.Row="5" Margin="0,20,0,10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
