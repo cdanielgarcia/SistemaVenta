@@ -28,7 +28,7 @@
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <Button Height="22" Width="51" Margin="5,0,0,0" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"></Button>
                         <TextBlock Text="Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
-                        <TextBox Name="txtId" Text="{Binding Producto.IdProducto, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="51"/>
+                        <TextBox Name="txtId" Text="{Binding Producto.IdProducto, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="51" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
