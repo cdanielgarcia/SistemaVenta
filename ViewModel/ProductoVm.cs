@@ -14,25 +14,15 @@ namespace SistemaVenta.ViewModel
     public class ProductoVm : INotifyObject
     {
         public RelayCommand cmd_Insertar { get; set; }
-        public RelayCommand cmd_Consultar { get; set; }
         public RelayCommand cmd_Borrar { get; set; }
         public RelayCommand cmd_Modifica { get; set; }
         public Producto Producto { get { return producto; } set { producto = value; OnPropertyChanged(); } }
 
         private Producto producto;
 
-
-        public ObservableCollection<Producto> ListaProducto { get { return listaproducto; } set { listaproducto = value; OnPropertyChanged(); } }
-        private ObservableCollection<Producto> listaproducto = new ObservableCollection<Producto>();
-
-        public ObservableCollection<Categoria> ListaCategoria { get { return listacategoria; } set { listacategoria = value; OnPropertyChanged(); } }
-        private ObservableCollection<Categoria> listacategoria = new ObservableCollection<Categoria>();
-
-
         public ProductoVm()
         {
             this.cmd_Insertar = new RelayCommand(p => this.Insertar());
-            this.cmd_Consultar = new RelayCommand(p => this.Consultar());
             this.cmd_Borrar = new RelayCommand(p => this.Borrar());
             this.cmd_Modifica = new RelayCommand(p => this.Modifica());
             this.Producto = new Producto();
@@ -40,100 +30,152 @@ namespace SistemaVenta.ViewModel
 
         public void Insertar()
         {
-            using (var dbc = new ApplicationDbContext())
+            try
             {
-                if (this.Producto.Codigo== null || this.Producto.Nombre == null || this.Producto.Descripcion == null)
+                this.Producto.IdProducto = 0;
+
+                if ((this.Producto.Codigo == null || this.Producto.Codigo == "") ||
+                    (this.Producto.Nombre == null || this.Producto.Nombre == "") ||
+                    (this.Producto.Descripcion == null || this.Producto.Descripcion == "") ||
+                    (this.Producto.IdCategoria == 0))
                 {
                     MessageBox.Show("No digitó algunos datos, intente nuevamente");
                     return;
                 }
-                
-                dbc.Productos?.Add(this.Producto);
-                try
-                {
-                    dbc.SaveChanges();
-                    this.Consultar();
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show("Error " + er.Message);
-                    if (er.InnerException != null)
-                        MessageBox.Show("Error " + er.InnerException.Message);
-                }
-            }
-        }
 
-        public void Consultar()
-        {
-            using (var dbc = new ApplicationDbContext())
+                this.Producto.FechaRegistro = DateTime.Now;
+
+                using (var dbc = new ApplicationDbContext())
+                {
+                    var existProducto = (from p in dbc.Productos
+                                         where p.Codigo == this.Producto.Codigo
+                                         select p).FirstOrDefault();
+
+                    if (existProducto == null)
+                    {
+                        dbc.Productos.Add(this.Producto);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Producto registrado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya existe un Producto con ese código.");
+                    }
+                }
+
+                this.Producto.IdProducto = 0;
+                this.Producto.Codigo = "";
+                this.Producto.Nombre = "";
+                this.Producto.Descripcion = "";
+                this.Producto.Estado = false;
+                this.Producto.IdProducto = 0;
+            }
+            catch (Exception ex)
             {
-                this.ListaProducto = new ObservableCollection<Producto>(dbc.Productos);
-                this.ListaCategoria = new ObservableCollection<Categoria>(dbc.Categorias);
-                
+                MessageBox.Show("Error ProductoVM -> No se pudo registrar el producto | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
             }
         }
-
 
         public void Borrar()
         {
-            if (this.Producto.Nombre == null)
+            try
             {
-                MessageBox.Show("No digitó el producto a borrar");
-                return;
-            }
+                if ((this.Producto.Codigo == null || this.Producto.Codigo == "") ||
+                    (this.Producto.Nombre == null || this.Producto.Nombre == "") ||
+                    (this.Producto.Descripcion == null || this.Producto.Descripcion == "") ||
+                    (this.Producto.IdCategoria == 0))
+                {
+                    MessageBox.Show("No digitó algunos datos, intente nuevamente");
+                    return;
+                }
 
-            using (var dbc = new ApplicationDbContext())
+                using (var dbc = new ApplicationDbContext())
+                {
+                    var borrar = (from p in dbc.Productos
+                                         where p.Codigo == this.Producto.Codigo
+                                         select p).FirstOrDefault();
+
+                    if (borrar != null)
+                    {
+                        dbc.Productos.Remove(borrar);
+                        dbc.SaveChanges();
+                        MessageBox.Show("Producto borrado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El código no existe en Productos.");
+                    }
+                }
+
+                this.Producto.IdProducto = 0;
+                this.Producto.Codigo = "";
+                this.Producto.Nombre = "";
+                this.Producto.Descripcion = "";
+                this.Producto.Estado = false;
+                this.Producto.IdProducto = 0;
+            }
+            catch (Exception ex)
             {
-                try
-                {
-                    var borr = (from p in dbc.Productos
-                                where p.Nombre == this.Producto.Nombre
-                                select p).Single();
-                    dbc.Productos?.Remove(borr);
-                    dbc.SaveChanges();
-                    this.ListaProducto = new ObservableCollection<Producto>(dbc.Productos);
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show("Error " + er.Message);
-                    if (er.InnerException != null)
-                        MessageBox.Show("Error " + er.InnerException.Message);
-                }
+                MessageBox.Show("Error ProductoVM -> No se pudo borrar el Producto | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
             }
         }
 
         public void Modifica()
         {
-            if (this.Producto.Nombre == null)
+            try
             {
-                MessageBox.Show("No digitó el nombre del producto a modificar");
-                return;
+                if ((this.Producto.Codigo == null || this.Producto.Codigo == "") ||
+                    (this.Producto.Nombre == null || this.Producto.Nombre == "") ||
+                    (this.Producto.Descripcion == null || this.Producto.Descripcion == "") ||
+                    (this.Producto.IdCategoria == 0))
+                {
+                    MessageBox.Show("No digitó algunos datos, intente nuevamente");
+                    return;
+                }
+
+                using (var dbc = new ApplicationDbContext())
+                {
+                    var producto = (from p in dbc.Productos
+                                  where p.IdProducto == this.Producto.IdProducto
+                                  select p).FirstOrDefault();
+
+                    if (producto != null)
+                    {
+                        producto.IdProducto = this.Producto.IdProducto;
+                        producto.IdCategoria = this.Producto.IdCategoria;
+                        producto.Codigo = this.Producto.Codigo;
+                        producto.Nombre = this.Producto.Nombre;
+                        producto.Descripcion = this.Producto.Descripcion;
+                        producto.Stock = 0;
+                        producto.PrecioCompra = 0;
+                        producto.PrecioVenta = 0;
+                        producto.Estado = this.Producto.Estado;
+                        dbc.SaveChanges();
+                        MessageBox.Show("Producto modificado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto no existe.");
+                    }
+                }
+
+                this.Producto.IdProducto = 0;
+                this.Producto.Codigo = "";
+                this.Producto.Nombre = "";
+                this.Producto.Descripcion = "";
+                this.Producto.Estado = false;
+                this.Producto.IdProducto = 0;
             }
-            using (var dbc = new ApplicationDbContext())
+            catch (Exception ex)
             {
-                var producto = dbc.Productos?.Find(this.Producto.IdProducto);
-                producto.IdCategoria = this.Producto.IdCategoria;            
-                producto.Codigo = this.Producto.Codigo;
-                producto.Nombre = this.Producto.Nombre;
-                producto.Descripcion = this.Producto.Descripcion;
-                producto.Stock = this.Producto.Stock;
-                producto.PrecioCompra = this.Producto.PrecioCompra;
-                producto.PrecioVenta = this.Producto.PrecioVenta;
-                producto.Estado = this.Producto.Estado;
-                producto.FechaRegistro = this.Producto.FechaRegistro;
-                try
-                {
-                    dbc.SaveChanges();
-                    this.Consultar();
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show("Error " + er.Message);
-                    if (er.InnerException != null)
-                        MessageBox.Show("Error " + er.InnerException.Message);
-                }
+                MessageBox.Show("Error ProductoVM -> No se pudo modificar el producto | " + ex.Message);
+                if (ex.InnerException != null)
+                    MessageBox.Show("Error " + ex.InnerException.Message);
             }
         }
-
     }
 }
