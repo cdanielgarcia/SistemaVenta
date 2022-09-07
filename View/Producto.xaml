@@ -27,7 +27,7 @@
                 <StackPanel Grid.Row="0" >
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="left" >
                         <Button Height="22" Width="51" Margin="5,0,0,0" Content="Volver" x:Name="volver_Menu" Click="volver_Menu_Click"></Button>
-                        <TextBlock Text="Detalle Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
+                        <TextBlock Text="Producto" FontSize="20" Foreground="Brown" FontWeight="Bold" Height="28" Width="163" Margin="20,0,0,3"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="1" >
