@@ -58,7 +58,7 @@ namespace SistemaVenta.ViewModel
                     dbc.SaveChanges();
 
                     var getCompraId = (from c in dbc.Compras
-                                      orderby c.FechaRegistro descending
+                                      orderby c.IdCompra descending
                                       select c.IdCompra).FirstOrDefault();
 
                     this.DetalleCompra.IdCompra = getCompraId;

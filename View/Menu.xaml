@@ -392,36 +392,6 @@
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
-                        <!--#region Btnusuarios_Click-->
-                        <ListViewItem Height="40">
-                            <Button x:Name="Btndoce"
-                                    Height="40"
-                                    Width="241"
-                                    HorizontalAlignment="Left"
-                                    Cursor="Hand"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"
-                                    Click="Btnusuarios_Click">
-                                <Grid Width="250">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Width="50"
-                                           Grid.Column="0"
-                                           HorizontalAlignment="Center"
-                                           Source="/imagenes/flecha-menu.png"/>
-                                    <TextBlock Grid.Column="1"
-                                               Text="Usuarios"
-                                               FontWeight="SemiBold"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"
-                                               Foreground="White" Margin="30,0,0,0" FontFamily="Bahnschrift"/>
-                                </Grid>
-                            </Button>
-                        </ListViewItem>
-                        <!--#endregion-->
                     </ListView>
                     <!--#endregion-->
 

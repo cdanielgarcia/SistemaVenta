@@ -39,7 +39,7 @@ namespace SistemaVenta.ViewModel
                 this.DetalleVenta.IdDetalleVenta = 0;
                 this.DetalleVenta.SubTotal = this.Venta.MontoTotal;
                 this.Venta.NumeroDocumento = DateTime.Now.ToString("MMddyyyyHHmmss");
-                this.Venta.IdUsuario = 3; // Toca cambiarlo por el usuario que esta registrando la factura.
+                this.Venta.IdUsuario = 1; // Toca cambiarlo por el usuario que esta registrando la factura.
                 this.DetalleVenta.FechaRegistro = this.Venta.FechaRegistro;
 
                 if ((this.Venta.TipoDocumento == null || this.Venta.TipoDocumento == "") ||
@@ -55,9 +55,9 @@ namespace SistemaVenta.ViewModel
                     return;
                 }
 
-                if (this.Venta.MontoPago - this.Venta.MontoCambio > this.Venta.MontoTotal)
+                if (this.Venta.MontoPago - this.Venta.MontoCambio < this.Venta.MontoTotal)
                 {
-                    MessageBox.Show("La suma del 'Pago con' y 'Cambio' dado es mayor al 'Total a Pagar'.");
+                    MessageBox.Show("La resta del 'Pago con' y 'Cambio' dado es mayor al 'Total a Pagar'.");
                     return;
                 }
 
@@ -67,7 +67,7 @@ namespace SistemaVenta.ViewModel
                     dbc.SaveChanges();
 
                     var getVentaId = (from v in dbc.Ventas
-                                      orderby v.FechaRegistro descending
+                                      orderby v.IdVenta descending
                                       select v.IdVenta).FirstOrDefault();
 
                     this.DetalleVenta.IdVenta = getVentaId;
